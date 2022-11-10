@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind utilities;
+@tailwind components;
+
+:root {
+  background-color: #2C2F3E;
+  color: rgba(255, 255, 255, 0.87);
+  font-family: "BeaufortforLOL-Bold, sans-serif";
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+}
