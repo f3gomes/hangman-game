@@ -34,7 +34,11 @@ export default function ModalResult({
         </div>
 
         <div className="relative p-4 w-96 h-full -ml-20 md:h-auto">
-          <div className="relative bg-904 rounded-3xl shadow dark:bg-gray-700">
+          <div
+            className={`relative ${
+              isWinner ? "bg-904" : "bg-red-300"
+            } rounded-3xl shadow dark:bg-gray-700`}
+          >
             <div className="flex justify-between items-start p-4 rounded-t">
               <h3 className="text-xl font-semibold text-902 dark:text-white ml-20 uppercase">
                 Você {isWinner ? "acertou" : "errou"}!
