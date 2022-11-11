@@ -25,10 +25,10 @@ export default function ModalResult({
         aria-hidden="true"
         className="flex justify-center items-center absolute md:inset-0 h-modal md:h-full"
       >
-        <div className="splash w-60 h-60 bg-904 rounded-full z-50">
+        <div className="splash w-60 h-60 text-901 bg-904 rounded-full z-50 flex justify-center">
           <img
             src={splash}
-            alt="champion image"
+            alt="Champion Slash Not Found"
             className="rounded-full h-full"
           />
         </div>
@@ -70,6 +70,11 @@ export default function ModalResult({
             <div className="p-6 space-y-6 flex justify-center">
               <p className="text-base leading-relaxed text-gray-500 dark:text-gray-400">
                 {championTitle.charAt(0).toUpperCase() + championTitle.slice(1)}
+              </p>
+            </div>
+            <div>
+              <p className="text-slate-900 text-center">
+                Pressione ENTER para um novo jogo!
               </p>
             </div>
           </div>

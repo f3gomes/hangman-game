@@ -7,6 +7,9 @@ import ModalResult from "./components/ModalResult";
 import logo from "./assets/logo.svg";
 import rankingIcon from "./assets/ranking_icon.svg";
 import { getTitle } from "./services/api";
+import Ranking from "./components/Ranking";
+import Footer from "./components/Footer";
+import ModalEnterNick from "./components/ModalEnterNick";
 
 const newName = () => {
   return champions[Math.floor(Math.random() * champions.length)];
@@ -16,9 +19,12 @@ function App() {
   const [championName, setChampionName] = useState(newName().toLowerCase());
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [showModalResult, setShowModalResult] = useState(false);
+  const [showModalRanking, setShowModalRanking] = useState(false);
+  const [showModalNick, setShowModalNick] = useState(false);
   const [splashImg, setSplashImg] = useState("");
   const [championTitle, setChampionTitle] = useState("");
   const [wonTheGame, setWonTheGame] = useState(false);
+  const [nickPlayer, setNickPlayer] = useState("");
 
   const missedLetters = guessedLetters.filter(
     (letter) => !championName.includes(letter)
@@ -28,6 +34,10 @@ function App() {
   const isWinnner = championName
     .split("")
     .every((letter) => guessedLetters.includes(letter));
+
+  const toggleModalRanking = () => {
+    setShowModalRanking(!showModalRanking);
+  };
 
   const handleIncludeGuessedLetter = useCallback(
     (key: string) => {
@@ -85,20 +95,22 @@ function App() {
     handleShowModal();
   }, [isWinnner, isLoser]);
 
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      const key = e.key;
-      if (!key.match(/^[a-z]$/)) return;
-      e.preventDefault();
-      handleIncludeGuessedLetter(key);
-    };
+  // READ KEYBOARD INPUT FOR GAME
 
-    document.addEventListener("keypress", handler);
+  // useEffect(() => {
+  //   const handler = (e: KeyboardEvent) => {
+  //     const key = e.key;
+  //     if (!key.match(/^[a-z]$/)) return;
+  //     e.preventDefault();
+  //     handleIncludeGuessedLetter(key);
+  //   };
 
-    return () => {
-      document.removeEventListener("keypress", handler);
-    };
-  }, [guessedLetters]);
+  //   document.addEventListener("keypress", handler);
+
+  //   return () => {
+  //     document.removeEventListener("keypress", handler);
+  //   };
+  // }, [guessedLetters]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -125,8 +137,15 @@ function App() {
 
   return (
     <div className="max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center mt-5">
+      <ModalEnterNick
+        show={showModalNick}
+        handleOnChange={(event: any) => setNickPlayer(event.target.value)}
+      />
       <img src={logo} alt="logotipo" className="absolute -left-3 -top-2" />
-      <div className="absolute right-0 top-0">
+      <div
+        className="absolute right-5 top-5 cursor-pointer"
+        onClick={toggleModalRanking}
+      >
         <img src={rankingIcon} alt="ranking icon" />
       </div>
 
@@ -142,7 +161,7 @@ function App() {
             guessedLetters={guessedLetters}
             nameToGuess={championName}
           />
-          <div className="self-stretch mt-10 mxl:mt-2">
+          <div className="self-stretch mxl:mt-2">
             <Keyboard
               disabled={isWinnner || isLoser}
               activeLetters={guessedLetters.filter((letter) =>
@@ -164,6 +183,9 @@ function App() {
         championTitle={championTitle}
         isWinner={wonTheGame}
       />
+
+      <Ranking show={showModalRanking} />
+      <Footer />
     </div>
   );
 }
