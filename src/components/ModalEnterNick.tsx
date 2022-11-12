@@ -2,25 +2,38 @@ import React from "react";
 
 interface ModalNickProps {
   show: boolean;
+  onDisabled: boolean;
   handleOnChange: any;
+  handleStartGame: any;
 }
 
 export default function ModalEnterNick({
   show,
+  onDisabled,
   handleOnChange,
+  handleStartGame,
 }: ModalNickProps) {
   return (
     <div
       className={`${
         show ? "" : "hidden"
-      } bg-902 absolute flex flex-col justify-center items-center bottom-2/4 w-96 h-36 rounded-3xl`}
+      } bg-902 absolute flex flex-col justify-center items-center bottom-2/4 w-96 h-40 rounded-3xl`}
     >
-      <p className="text-903 font-bold uppercase font-sans">Digite seu nick</p>
+      <p className="text-903 text-2xl font-bold uppercase font-sans">
+        Digite seu nick
+      </p>
       <input
         type="text"
-        className="w-8/12 h-9 rounded-xl text-903 text-center font-bold font-sans"
+        className="w-9/12 h-9 rounded-xl text-903 text-center font-bold font-sans"
         onChange={handleOnChange}
       />
+      <button
+        className="mt-4 font-bold text-xl text-904 cursor-pointer disabled:opacity-30"
+        onClick={handleStartGame}
+        disabled={onDisabled}
+      >
+        Iniciar
+      </button>
     </div>
   );
 }

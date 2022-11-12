@@ -22,7 +22,7 @@ export default function HangmanName({
                 guessedLetters.includes(letter) || reveal
                   ? "visible"
                   : "hidden",
-              color: !guessedLetters.includes(letter) && reveal ? "" : "", // red : ""
+              color: !guessedLetters.includes(letter) && reveal ? "red" : "",
             }}
           >
             {letter}

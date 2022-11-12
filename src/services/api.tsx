@@ -11,9 +11,9 @@ export const getTitle = axios.create({
 });
 
 export const getRanking = axios.create({
-  baseURL: "https://hangman-api.onrender.com/ranking",
+  baseURL: "https://ranking-app.adaptable.app",
 });
 
 export const postRanking = axios.create({
-  baseURL: "https://hangman-api.onrender.com/new",
+  baseURL: "https://ranking-app.adaptable.app",
 });

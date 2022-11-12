@@ -16,6 +16,7 @@ module.exports = {
         901: "#272A2F",
         902: "#28805E",
         903: "#2C2F3E",
+        904: "#44A580",
       },
 
       gridTemplateColumns: {

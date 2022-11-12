@@ -3,7 +3,6 @@
   height: 60px;
   border: 3px solid white;
   background: white;
-  font-size: 2rem;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
@@ -26,6 +25,5 @@
 .btn:hover:not(:disabled),
 .btn:focus:not(:disabled) {
   background-color: #80d4ff;
-  font-size: 2.3rem;
   transition: 0.2s;
 }

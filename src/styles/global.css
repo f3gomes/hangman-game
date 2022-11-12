@@ -3,11 +3,15 @@
 @tailwind components;
 
 :root {
-  background-color: #2C2F3E;
+  background-color: #2c2f3e;
   color: rgba(255, 255, 255, 0.87);
   font-family: "BeaufortforLOL-Bold, sans-serif";
 }
 
 body {
   -webkit-font-smoothing: antialiased;
+}
+
+.first-blur.modal-blur > *:not(.modal) {
+  -webkit-filter: opacity(30%);
 }

@@ -6,7 +6,7 @@ import Keyboard from "./components/Keyboard";
 import ModalResult from "./components/ModalResult";
 import logo from "./assets/logo.svg";
 import rankingIcon from "./assets/ranking_icon.svg";
-import { getTitle } from "./services/api";
+import { getTitle, postRanking } from "./services/api";
 import Ranking from "./components/Ranking";
 import Footer from "./components/Footer";
 import ModalEnterNick from "./components/ModalEnterNick";
@@ -20,11 +20,18 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
-  const [showModalNick, setShowModalNick] = useState(false);
+  const [showModalNick, setShowModalNick] = useState(
+    localStorage.getItem("nick") ? false : true
+  );
   const [splashImg, setSplashImg] = useState("");
   const [championTitle, setChampionTitle] = useState("");
   const [wonTheGame, setWonTheGame] = useState(false);
-  const [nickPlayer, setNickPlayer] = useState("");
+  const [openModalClass, setOpenModalClass] = useState(
+    localStorage.getItem("nick" ? "" : "modal-blur")
+  );
+  const [nickPlayer, setNickPlayer] = useState<any>(
+    localStorage.getItem("nick" || "")
+  );
 
   const missedLetters = guessedLetters.filter(
     (letter) => !championName.includes(letter)
@@ -83,6 +90,7 @@ function App() {
     if (isWinnner) {
       setShowModalResult(true);
       setWonTheGame(true);
+      postRanking.post("/new", { nick: nickPlayer, points: calculatePoints() });
     }
 
     if (isLoser) {
@@ -91,10 +99,23 @@ function App() {
     }
   };
 
+  const handleStartGame = () => {
+    setShowModalNick(false);
+    setOpenModalClass("");
+    localStorage.setItem("nick", nickPlayer);
+    postRanking.post("/new", { nick: nickPlayer, points: 0 });
+  };
+
+  const calculatePoints = () => {
+    const totalPoints =
+      championName.length * 10 + 60 - missedLetters.length * 10;
+    return totalPoints;
+  };
+
   useEffect(() => {
     handleShowModal();
   }, [isWinnner, isLoser]);
-
+  ("");
   // READ KEYBOARD INPUT FOR GAME
 
   // useEffect(() => {
@@ -136,57 +157,65 @@ function App() {
   }, [championName]);
 
   return (
-    <div className="max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center mt-5">
-      <ModalEnterNick
-        show={showModalNick}
-        handleOnChange={(event: any) => setNickPlayer(event.target.value)}
-      />
-      <img src={logo} alt="logotipo" className="absolute -left-3 -top-2" />
+    <>
+      <div className="flex justify-center">
+        <ModalEnterNick
+          show={showModalNick}
+          onDisabled={nickPlayer ? false : true}
+          handleOnChange={(event: any) => setNickPlayer(event.target.value)}
+          handleStartGame={handleStartGame}
+        />
+      </div>
       <div
-        className="absolute right-5 top-5 cursor-pointer"
-        onClick={toggleModalRanking}
+        className={`max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center mt-5 first-blur ${openModalClass}`}
       >
-        <img src={rankingIcon} alt="ranking icon" />
-      </div>
+        <img src={logo} alt="logotipo" className="absolute -left-3 -top-2" />
+        <div
+          className="absolute right-5 top-5 cursor-pointer"
+          onClick={toggleModalRanking}
+        >
+          <img src={rankingIcon} alt="ranking icon" />
+        </div>
 
-      <div className="text-4xl text-center absolute right-0 bottom-0">
-        {isWinnner && "Win"}
-        {isLoser && "Lose"}
-      </div>
-      <HangmanDraw guesses={missedLetters.length} />
-      {!showModalResult && (
-        <>
-          <HangmanName
-            reveal={isLoser}
-            guessedLetters={guessedLetters}
-            nameToGuess={championName}
-          />
-          <div className="self-stretch mxl:mt-2">
-            <Keyboard
-              disabled={isWinnner || isLoser}
-              activeLetters={guessedLetters.filter((letter) =>
-                championName.includes(letter)
-              )}
-              inactiveLetters={missedLetters}
-              handleIncludeGuessedLetter={handleIncludeGuessedLetter}
+        <div className="text-4xl text-center absolute right-0 bottom-0">
+          {isWinnner && "Win"}
+          {isLoser && "Lose"}
+        </div>
+        <HangmanDraw guesses={missedLetters.length} />
+        {!showModalResult && (
+          <>
+            <HangmanName
+              reveal={isLoser}
+              guessedLetters={guessedLetters}
+              nameToGuess={championName}
             />
-          </div>
-        </>
-      )}
-      <ModalResult
-        show={showModalResult}
-        closeModal={handleCloseModal}
-        splash={splashImg}
-        championName={
-          championName.charAt(0).toUpperCase() + championName.slice(1)
-        }
-        championTitle={championTitle}
-        isWinner={wonTheGame}
-      />
+            <div className="self-stretch mxl:mt-2">
+              <Keyboard
+                disabled={isWinnner || isLoser}
+                activeLetters={guessedLetters.filter((letter) =>
+                  championName.includes(letter)
+                )}
+                inactiveLetters={missedLetters}
+                handleIncludeGuessedLetter={handleIncludeGuessedLetter}
+              />
+            </div>
+          </>
+        )}
+        <ModalResult
+          show={showModalResult}
+          closeModal={handleCloseModal}
+          splash={splashImg}
+          championName={
+            championName.charAt(0).toUpperCase() + championName.slice(1)
+          }
+          championTitle={championTitle}
+          isWinner={wonTheGame}
+        />
 
-      <Ranking show={showModalRanking} />
-      <Footer />
-    </div>
+        <Ranking show={showModalRanking} win={wonTheGame} />
+        <Footer />
+      </div>
+    </>
   );
 }
 
