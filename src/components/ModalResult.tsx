@@ -49,7 +49,9 @@ export default function ModalResult({
               >
                 Você {isWinner ? "acertou" : "errou"}!
               </h3>
-              <p className="text-gray-900 font-sans">+{plusPoints}</p>
+              <p className="text-gray-900 font-sans">
+                {isWinner ? `+${plusPoints}` : "-100"}
+              </p>
             </div>
             <div className="flex justify-center">
               <p className="text-gray-900 text-4xl font-bold font-sans">

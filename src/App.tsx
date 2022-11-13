@@ -16,7 +16,7 @@ const newName = () => {
 };
 
 function App() {
-  const [championName, setChampionName] = useState(newName().toLowerCase());
+  const [championName, setChampionName] = useState(newName());
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
@@ -35,11 +35,12 @@ function App() {
   );
 
   const missedLetters = guessedLetters.filter(
-    (letter) => !championName.includes(letter)
+    (letter) => !championName.toLocaleLowerCase().includes(letter)
   );
 
   const isLoser = missedLetters.length >= 6;
   const isWinnner = championName
+    .toLocaleLowerCase()
     .split("")
     .every((letter) => guessedLetters.includes(letter));
 
@@ -67,9 +68,10 @@ function App() {
   };
 
   const handleGetSplash = async (championName: string) => {
+    let name = championName.charAt(0).toUpperCase() + championName.slice(1);
     try {
       fetch(
-        `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championName}_0.jpg`
+        `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg`
       )
         .then((res) => {
           return res.blob();
@@ -92,7 +94,10 @@ function App() {
       setWonTheGame(true);
       setShowModalResult(true);
       setOpenModalClass("modal-blur");
-      postRanking.post("/new", { nick: nickPlayer, points: calculatePoints() });
+      postRanking.post("/new", {
+        nick: nickPlayer,
+        points: calculatePoints(true),
+      });
     }
 
     if (isLoser) {
@@ -100,6 +105,10 @@ function App() {
       setWonTheGame(false);
       setShowModalResult(true);
       setOpenModalClass("modal-blur");
+      postRanking.post("/new", {
+        nick: nickPlayer,
+        points: calculatePoints(false),
+      });
     }
   };
 
@@ -111,11 +120,16 @@ function App() {
     location.reload();
   };
 
-  const calculatePoints = () => {
-    const points = Number(localStorage.getItem("points"));
-    const total = (championName.length - missedLetters.length + 6) * 10;
-    setPlusPoints(total);
-    return total + points;
+  const calculatePoints = (win: boolean) => {
+    if (win) {
+      const points = Number(localStorage.getItem("points"));
+      const total = (championName.length - missedLetters.length + 6) * 10;
+      setPlusPoints(total);
+      return total + points;
+    } else {
+      const points = Number(localStorage.getItem("points"));
+      return points - 100;
+    }
   };
 
   useEffect(() => {
@@ -142,9 +156,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    let champion = championName.charAt(0).toUpperCase() + championName.slice(1);
-    handleGetTitle(champion);
-    handleGetSplash(champion);
+    handleGetTitle(championName);
+    handleGetSplash(championName);
   }, [championName]);
 
   return (
@@ -161,7 +174,8 @@ function App() {
           closeModal={handleCloseModal}
           splash={splashImg}
           championName={
-            championName.charAt(0).toUpperCase() + championName.slice(1)
+            championName.toLocaleLowerCase().charAt(0).toUpperCase() +
+            championName.slice(1)
           }
           championTitle={championTitle}
           isWinner={wonTheGame}
@@ -190,13 +204,13 @@ function App() {
             <HangmanName
               reveal={isLoser}
               guessedLetters={guessedLetters}
-              nameToGuess={championName}
+              nameToGuess={championName.toLocaleLowerCase()}
             />
             <div className="self-stretch mxl:mt-2">
               <Keyboard
                 disabled={isWinnner || isLoser}
                 activeLetters={guessedLetters.filter((letter) =>
-                  championName.includes(letter)
+                  championName.toLocaleLowerCase().includes(letter)
                 )}
                 inactiveLetters={missedLetters}
                 handleIncludeGuessedLetter={handleIncludeGuessedLetter}
