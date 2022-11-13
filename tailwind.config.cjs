@@ -10,6 +10,7 @@ module.exports = {
         904: "#C5D9E5",
         905: "#445FA5",
         906: "#2C2F3E",
+        907: "#E35B5B"
       },
 
       textColor: {
@@ -19,13 +20,16 @@ module.exports = {
         904: "#44A580",
       },
 
+      width: {
+        909: "500px",
+      },
+
       gridTemplateColumns: {
         21: "repeat(auto-fit, minmax(75px, 1fr))",
       },
 
       screens: {
         mxl: { min: "1366px" },
-        // => @media (max-width: 1279px) { ... }
 
         mxl2: { min: "1520px" },
 

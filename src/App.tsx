@@ -26,6 +26,7 @@ function App() {
   const [splashImg, setSplashImg] = useState("");
   const [championTitle, setChampionTitle] = useState("");
   const [wonTheGame, setWonTheGame] = useState(false);
+  const [plusPoints, setPlusPoints] = useState<number>(0);
   const [openModalClass, setOpenModalClass] = useState(
     localStorage.getItem("nick" ? "" : "modal-blur")
   );
@@ -59,7 +60,7 @@ function App() {
     try {
       const resp = await getTitle("");
       const arr = resp.data.data;
-      setChampionTitle(arr[`${name}`].title);
+      setChampionTitle(arr[`${name}`]?.title);
     } catch (err) {
       console.log(err);
     }
@@ -88,50 +89,39 @@ function App() {
 
   const handleShowModal = () => {
     if (isWinnner) {
-      setShowModalResult(true);
       setWonTheGame(true);
+      setShowModalResult(true);
+      setOpenModalClass("modal-blur");
       postRanking.post("/new", { nick: nickPlayer, points: calculatePoints() });
     }
 
     if (isLoser) {
+      setPlusPoints(0);
       setWonTheGame(false);
       setShowModalResult(true);
+      setOpenModalClass("modal-blur");
     }
   };
 
-  const handleStartGame = () => {
+  const handleStartGame = async () => {
     setShowModalNick(false);
     setOpenModalClass("");
     localStorage.setItem("nick", nickPlayer);
-    postRanking.post("/new", { nick: nickPlayer, points: 0 });
+    await postRanking.post("/new", { nick: nickPlayer, points: 0 });
+    location.reload();
   };
 
   const calculatePoints = () => {
-    const totalPoints =
-      championName.length * 10 + 60 - missedLetters.length * 10;
-    return totalPoints;
+    const points = Number(localStorage.getItem("points"));
+    const total = (championName.length - missedLetters.length + 6) * 10;
+    setPlusPoints(total);
+    return total + points;
   };
 
   useEffect(() => {
     handleShowModal();
   }, [isWinnner, isLoser]);
   ("");
-  // READ KEYBOARD INPUT FOR GAME
-
-  // useEffect(() => {
-  //   const handler = (e: KeyboardEvent) => {
-  //     const key = e.key;
-  //     if (!key.match(/^[a-z]$/)) return;
-  //     e.preventDefault();
-  //     handleIncludeGuessedLetter(key);
-  //   };
-
-  //   document.addEventListener("keypress", handler);
-
-  //   return () => {
-  //     document.removeEventListener("keypress", handler);
-  //   };
-  // }, [guessedLetters]);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -139,6 +129,7 @@ function App() {
       if (key !== "Enter") return;
       e.preventDefault();
       setShowModalResult(false);
+      setOpenModalClass("");
       setGuessedLetters([]);
       setChampionName(newName().toLowerCase());
     };
@@ -165,17 +156,29 @@ function App() {
           handleOnChange={(event: any) => setNickPlayer(event.target.value)}
           handleStartGame={handleStartGame}
         />
+        <ModalResult
+          show={showModalResult}
+          closeModal={handleCloseModal}
+          splash={splashImg}
+          championName={
+            championName.charAt(0).toUpperCase() + championName.slice(1)
+          }
+          championTitle={championTitle}
+          isWinner={wonTheGame}
+          plusPoints={plusPoints}
+        />
       </div>
       <div
         className={`max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center mt-5 first-blur ${openModalClass}`}
       >
         <img src={logo} alt="logotipo" className="absolute -left-3 -top-2" />
-        <div
-          className="absolute right-5 top-5 cursor-pointer"
+        <button
+          className="absolute right-5 top-5 cursor-pointer focus:outline-none"
+          disabled={showModalNick}
           onClick={toggleModalRanking}
         >
           <img src={rankingIcon} alt="ranking icon" />
-        </div>
+        </button>
 
         <div className="text-4xl text-center absolute right-0 bottom-0">
           {isWinnner && "Win"}
@@ -201,18 +204,8 @@ function App() {
             </div>
           </>
         )}
-        <ModalResult
-          show={showModalResult}
-          closeModal={handleCloseModal}
-          splash={splashImg}
-          championName={
-            championName.charAt(0).toUpperCase() + championName.slice(1)
-          }
-          championTitle={championTitle}
-          isWinner={wonTheGame}
-        />
 
-        <Ranking show={showModalRanking} win={wonTheGame} />
+        <Ranking show={showModalRanking} key={missedLetters.length} />
         <Footer />
       </div>
     </>

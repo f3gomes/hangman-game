@@ -9,7 +9,7 @@ export const champions = [
   "Annie",
   "Aphelios",
   "Ashe",
-  "AurelionSol", //*
+  "AurelionSol",
   "Azir",
   "Bard",
   "Belveth",
@@ -24,7 +24,7 @@ export const champions = [
   "Darius",
   "Diana",
   "Draven",
-  "DrMundo", // *
+  "DrMundo",
   "Ekko",
   "Elise",
   "Evelynn",
@@ -45,7 +45,7 @@ export const champions = [
   "Irelia",
   "Ivern",
   "Janna",
-  "JarvanIV", // *
+  "JarvanIV",
   "Jax",
   "Jayce",
   "Jhin",
@@ -75,9 +75,9 @@ export const champions = [
   "Malphite",
   "Malzahar",
   "Maokai",
-  "MasterYi", //*
+  "MasterYi",
   "MissFortune",
-  "MonkeyKing", //*
+  "MonkeyKing",
   "Mordekaiser",
   "Morgana",
   "Nami",
@@ -123,7 +123,7 @@ export const champions = [
   "Swain",
   "Sylas",
   "Syndra",
-  "TahmKench", //*
+  "TahmKench",
   "Taliyah",
   "Talon",
   "Taric",
@@ -132,7 +132,7 @@ export const champions = [
   "Tristana",
   "Trundle",
   "Tryndamere",
-  "TwistedFate", //*
+  "TwistedFate",
   "Twitch",
   "Udyr",
   "Urgot",
@@ -149,7 +149,7 @@ export const champions = [
   "Warwick",
   "Xayah",
   "Xerath",
-  "XinZhao", //*
+  "XinZhao",
   "Yasuo",
   "Yone",
   "Yorick",
