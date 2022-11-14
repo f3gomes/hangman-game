@@ -185,7 +185,7 @@ function App() {
       <div
         className={`max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center mt-5 first-blur ${openModalClass}`}
       >
-        <img src={logo} alt="logotipo" className="absolute -left-3 -top-2" />
+        <img src={logo} alt="logotipo" className="absolute -left-3 -top-2 msl:w-52" />
         <button
           className="absolute right-5 top-5 cursor-pointer focus:outline-none"
           disabled={showModalNick}
@@ -198,7 +198,9 @@ function App() {
           {isWinnner && "Win"}
           {isLoser && "Lose"}
         </div>
-        <HangmanDraw guesses={missedLetters.length} />
+        <div className={`${showModalNick ? "invisible" : ""}`}>
+          <HangmanDraw guesses={missedLetters.length} />
+        </div>
         {!showModalResult && (
           <>
             <HangmanName
