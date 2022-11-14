@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { getRanking } from "../services/api";
 import Loading from "./Loading";
-
+import challenger from "../assets/challenger.png";
+import diamond from "../assets/diamond.png";
+import bronze from "../assets/bronze.png";
 interface RankingProps {
   show: boolean;
 }
@@ -73,8 +75,35 @@ export default function Ranking({ show }: RankingProps) {
               (item: any, index: number) =>
                 index < 10 && (
                   <div key={index} className="font-sans">
-                    <span className="text-2xl font-bold">{item?.nick}</span>
-                    <span className="float-right mr-7 text-lg">
+                    <span className="flex flex-row">
+                      <span className="text-2xl font-bold">{item?.nick}</span>
+                      <span>
+                        {index === 0 && (
+                          <img
+                            src={challenger}
+                            alt="challenger icon"
+                            className="w-14 -mt-4 ml-2 absolute"
+                          />
+                        )}
+
+                        {index === 1 && (
+                          <img
+                            src={diamond}
+                            alt="challenger icon"
+                            className="w-14 -mt-4 ml-2 absolute"
+                          />
+                        )}
+
+                        {index === 2 && (
+                          <img
+                            src={bronze}
+                            alt="challenger icon"
+                            className="w-14 -mt-4 ml-2 absolute"
+                          />
+                        )}
+                      </span>
+                    </span>
+                    <span className="float-right mr-7 text-lg -mt-7">
                       {item?.points}
                     </span>
                   </div>

@@ -27,7 +27,7 @@ export default function ModalResult({
         aria-hidden="true"
         className="flex justify-center items-center absolute md:inset-0 h-modal md:h-full"
       >
-        <div className="splash w-80 h-80 text-901 bg-904 rounded-full z-50 flex justify-center msl:-ml-40 mt-20">
+        <div className="splash w-80 h-80 text-901 bg-904 rounded-full z-50 flex justify-center msl:-ml-40 msl:mt-20">
           <img
             src={splash}
             alt="Champion Slash Not Found"
@@ -35,7 +35,7 @@ export default function ModalResult({
           />
         </div>
 
-        <div className="relative p-4 w-909 h-full -ml-20 md:h-auto msl:absolute mt-800">
+        <div className="relative p-4 w-96 h-full -ml-20 md:h-auto msl:absolute msl:mt-800">
           <div
             className={`relative ${
               isWinner ? "bg-904" : "bg-red-300"
@@ -43,7 +43,7 @@ export default function ModalResult({
           >
             <div className="flex justify-between items-start p-4 rounded-t">
               <h3
-                className={`text-2xl font-semibold ${
+                className={`text-xl font-semibold ml-24 ${
                   isWinner ? "text-902" : "text-907"
                 } dark:text-white ml-32 uppercase`}
               >
