@@ -90,7 +90,7 @@ export default function Ranking({ show }: RankingProps) {
                           <img
                             src={diamond}
                             alt="challenger icon"
-                            className="w-14 -mt-4 ml-2 absolute"
+                            className="w-12 -mt-3 ml-2 absolute"
                           />
                         )}
 
@@ -98,7 +98,7 @@ export default function Ranking({ show }: RankingProps) {
                           <img
                             src={bronze}
                             alt="challenger icon"
-                            className="w-14 -mt-4 ml-2 absolute"
+                            className="w-10 -mt-1 ml-2 absolute"
                           />
                         )}
                       </span>
