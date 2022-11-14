@@ -21,7 +21,11 @@ module.exports = {
       },
 
       width: {
-        909: "500px",
+        909: "700px",
+      },
+
+      margin: {
+        800: "800px",
       },
 
       gridTemplateColumns: {
