@@ -5,15 +5,6 @@ export const api = axios.create({
     "https://ddragon.leagueoflegends.com/cdn/12.21.1/data/pt_BR/champion.json",
 });
 
-export const getTitle = axios.create({
-  baseURL:
-    "https://ddragon.leagueoflegends.com/cdn/12.21.1/data/pt_BR/champion.json",
-});
-
-export const getRanking = axios.create({
-  baseURL: "https://ranking-app.adaptable.app",
-});
-
-export const postRanking = axios.create({
+export const apiRank = axios.create({
   baseURL: "https://ranking-app.adaptable.app",
 });

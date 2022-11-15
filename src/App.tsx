@@ -6,7 +6,7 @@ import Keyboard from "./components/Keyboard";
 import ModalResult from "./components/ModalResult";
 import logo from "./assets/logo.svg";
 import rankingIcon from "./assets/ranking_icon.svg";
-import { getTitle, postRanking } from "./services/api";
+import { api, apiRank } from "./services/api";
 import Ranking from "./components/Ranking";
 import Footer from "./components/Footer";
 import ModalEnterNick from "./components/ModalEnterNick";
@@ -59,7 +59,7 @@ function App() {
 
   const handleGetTitle = async (name: string) => {
     try {
-      const resp = await getTitle("");
+      const resp = await api("");
       const arr = resp.data.data;
       setChampionTitle(arr[`${name}`]?.title);
     } catch (err) {
@@ -94,7 +94,7 @@ function App() {
       setWonTheGame(true);
       setShowModalResult(true);
       setOpenModalClass("modal-blur");
-      postRanking.post("/new", {
+      apiRank.post("/new", {
         nick: nickPlayer,
         points: calculatePoints(true),
       });
@@ -105,7 +105,7 @@ function App() {
       setWonTheGame(false);
       setShowModalResult(true);
       setOpenModalClass("modal-blur");
-      postRanking.post("/new", {
+      apiRank.post("/new", {
         nick: nickPlayer,
         points: calculatePoints(false),
       });
@@ -121,13 +121,12 @@ function App() {
   };
 
   const calculatePoints = (win: boolean) => {
+    const points = Number(localStorage.getItem("points"));
     if (win) {
-      const points = Number(localStorage.getItem("points"));
       const total = (championName.length - missedLetters.length + 6) * 10;
       setPlusPoints(total);
       return total + points;
     } else {
-      const points = Number(localStorage.getItem("points"));
       return points - 100;
     }
   };
@@ -185,7 +184,11 @@ function App() {
       <div
         className={`max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center mt-5 first-blur ${openModalClass}`}
       >
-        <img src={logo} alt="logotipo" className="absolute -left-3 -top-2 msl:w-52" />
+        <img
+          src={logo}
+          alt="logotipo"
+          className="absolute -left-3 -top-2 msl:w-52"
+        />
         <button
           className="absolute right-5 top-5 cursor-pointer focus:outline-none"
           disabled={showModalNick}

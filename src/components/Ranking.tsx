@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getRanking } from "../services/api";
+import { apiRank } from "../services/api";
 import Loading from "./Loading";
 import challenger from "../assets/challenger.png";
 import diamond from "../assets/diamond.png";
@@ -18,7 +18,7 @@ export default function Ranking({ show }: RankingProps) {
   const handleGetRanking = async () => {
     try {
       setIsLoading(true);
-      const resp = await getRanking.get("/ranking");
+      const resp = await apiRank.get("/ranking");
       setRankingTable(resp.data.rank);
 
       const filter = resp.data.rank.filter(
