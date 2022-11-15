@@ -10,6 +10,8 @@ import { api, apiRank } from "./services/api";
 import Ranking from "./components/Ranking";
 import Footer from "./components/Footer";
 import ModalEnterNick from "./components/ModalEnterNick";
+import copyright from "./assets/copyright.svg";
+import ModalCredits from "./components/ModalCredits";
 
 const newName = () => {
   return champions[Math.floor(Math.random() * champions.length)];
@@ -20,6 +22,7 @@ function App() {
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
+  const [showModalCredits, setShowModalCredits] = useState(false);
   const [showModalNick, setShowModalNick] = useState(
     localStorage.getItem("nick") ? false : true
   );
@@ -131,6 +134,10 @@ function App() {
     }
   };
 
+  const handleOpenCredits = () => {
+    setShowModalCredits(!showModalCredits);
+  };
+
   useEffect(() => {
     handleShowModal();
   }, [isWinnner, isLoser]);
@@ -222,6 +229,13 @@ function App() {
 
         <Ranking show={showModalRanking} key={missedLetters.length} />
         <Footer />
+        <ModalCredits show={showModalCredits} />
+        <button
+          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none"
+          onClick={handleOpenCredits}
+        >
+          <img src={copyright} alt="copyright" />
+        </button>
       </div>
     </div>
   );
