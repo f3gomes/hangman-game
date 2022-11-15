@@ -3,6 +3,7 @@ import React from "react";
 const head = () => {
   return (
     <div
+      key={1}
       style={{
         width: "50px",
         height: "50px",
@@ -19,6 +20,7 @@ const head = () => {
 const body = () => {
   return (
     <div
+      key={2}
       style={{
         width: "10px",
         height: "100px",
@@ -34,6 +36,7 @@ const body = () => {
 const rightArm = () => {
   return (
     <div
+      key={3}
       style={{
         width: "80px",
         height: "10px",
@@ -49,6 +52,7 @@ const rightArm = () => {
 const leftArm = () => {
   return (
     <div
+      key={4}
       style={{
         width: "80px",
         height: "10px",
@@ -64,6 +68,7 @@ const leftArm = () => {
 const rightLeg = () => {
   return (
     <div
+      key={5}
       style={{
         width: "100px",
         height: "10px",
@@ -81,6 +86,7 @@ const rightLeg = () => {
 const leftLeg = () => {
   return (
     <div
+      key={6}
       style={{
         width: "100px",
         height: "10px",

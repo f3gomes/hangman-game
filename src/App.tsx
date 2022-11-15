@@ -116,7 +116,7 @@ function App() {
     setShowModalNick(false);
     setOpenModalClass("");
     localStorage.setItem("nick", nickPlayer);
-    await postRanking.post("/new", { nick: nickPlayer, points: 0 });
+    await apiRank.post("/new", { nick: nickPlayer, points: 0 });
     location.reload();
   };
 
