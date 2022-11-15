@@ -30,7 +30,7 @@ export default function ModalResult({
         <div className="splash w-80 h-80 text-901 bg-904 rounded-full z-50 flex justify-center msl:-ml-40 msl:mt-20">
           <img
             src={splash}
-            alt="Champion Slash Not Found"
+            alt="splash"
             className="rounded-full h-full"
           />
         </div>
@@ -45,7 +45,7 @@ export default function ModalResult({
               <h3
                 className={`text-xl font-semibold ml-24 ${
                   isWinner ? "text-902" : "text-907"
-                } dark:text-white ml-32 uppercase`}
+                } dark:text-white ml-32 uppercase msl:ml-10`}
               >
                 Você {isWinner ? "acertou" : "errou"}!
               </h3>
@@ -64,7 +64,7 @@ export default function ModalResult({
               </p>
             </div>
             <div className="text-center">
-              <p className="text-slate-900 text-center font-sans">
+              <p className="text-slate-900 text-center font-sans ml-6 msl:-m-2 msl:text-sm">
                 Pressione <strong>ENTER</strong> para um novo jogo!
               </p>
             </div>

@@ -160,7 +160,7 @@ function App() {
   }, [championName]);
 
   return (
-    <>
+    <div className="msl:w-11/12">
       <div className="flex justify-center">
         <ModalEnterNick
           show={showModalNick}
@@ -187,7 +187,7 @@ function App() {
         <img
           src={logo}
           alt="logotipo"
-          className="absolute -left-3 -top-2 msl:w-52"
+          className="absolute left-3 top-2 w-64 msl:w-40"
         />
         <button
           className="absolute right-5 top-5 cursor-pointer focus:outline-none"
@@ -197,10 +197,6 @@ function App() {
           <img src={rankingIcon} alt="ranking icon" />
         </button>
 
-        <div className="text-4xl text-center absolute right-0 bottom-0">
-          {isWinnner && "Win"}
-          {isLoser && "Lose"}
-        </div>
         <div className={`${showModalNick ? "invisible" : ""}`}>
           <HangmanDraw guesses={missedLetters.length} />
         </div>
@@ -227,7 +223,7 @@ function App() {
         <Ranking show={showModalRanking} key={missedLetters.length} />
         <Footer />
       </div>
-    </>
+    </div>
   );
 }
 

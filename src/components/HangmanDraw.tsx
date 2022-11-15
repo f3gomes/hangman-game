@@ -114,7 +114,7 @@ export default function HangmanDraw({ guesses }: HangmanDrawProps) {
       {Array.from(bodyParts).slice(0, guesses)}
       <div className="bg-903 absolute h-8 w-2 right-0"></div>
       <div className="bg-903 h-2 w-52 ml-32"></div>
-      <div className="bg-903 h-80 w-2 ml-32 mxl:h-64"></div>
+      <div className="bg-903 h-80 w-2 ml-32 mxl:h-64 msl:h-64"></div>
       <div className="bg-903 h-2 w-36 ml-16"></div>
     </div>
   );

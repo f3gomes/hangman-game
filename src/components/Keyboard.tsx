@@ -56,7 +56,7 @@ export default function Keyboard({
             key={key}
             className={`text-901 rounded-xl btn ${isActive ? "active" : ""} ${
               isInactive ? "inactive" : ""
-            } mxl:w-11 h-11 text-3xl `}
+            } mxl:w-11 h-11 text-3xl msl:w-12`}
           >
             {key}
           </button>
