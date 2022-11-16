@@ -151,7 +151,7 @@ function App() {
       setShowModalResult(false);
       setOpenModalClass("");
       setGuessedLetters([]);
-      setChampionName(newName().toLowerCase());
+      setChampionName(newName());
     };
 
     document.addEventListener("keypress", handler);
@@ -162,6 +162,7 @@ function App() {
   }, []);
 
   useEffect(() => {
+    console.log(championName)
     handleGetTitle(championName);
     handleGetSplash(championName);
   }, [championName]);
@@ -231,7 +232,7 @@ function App() {
         <Footer />
         <ModalCredits show={showModalCredits} />
         <button
-          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none"
+          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-10"
           onClick={handleOpenCredits}
         >
           <img src={copyright} alt="copyright" />

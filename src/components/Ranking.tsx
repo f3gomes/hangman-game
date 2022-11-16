@@ -4,6 +4,7 @@ import Loading from "./Loading";
 import challenger from "../assets/challenger.png";
 import diamond from "../assets/diamond.png";
 import bronze from "../assets/bronze.png";
+import "../styles/ranking.css"
 interface RankingProps {
   show: boolean;
 }
@@ -50,7 +51,7 @@ export default function Ranking({ show }: RankingProps) {
     <div
       className={`${
         show ? "" : "hidden"
-      } absolute right-0 mt-14 w-96 h-2/3 bg-905 rounded-tl-3xl rounded-bl-3xl`}
+      } animate-page absolute right-0 mt-14 w-96 h-2/3 bg-905 rounded-tl-3xl rounded-bl-3xl`}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">
