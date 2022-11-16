@@ -99,7 +99,7 @@ function App() {
       setOpenModalClass("modal-blur");
       apiRank.post("/new", {
         nick: nickPlayer,
-        points: calculatePoints(true),
+        gamePoints: calculatePoints(true),
       });
     }
 
@@ -110,7 +110,7 @@ function App() {
       setOpenModalClass("modal-blur");
       apiRank.post("/new", {
         nick: nickPlayer,
-        points: calculatePoints(false),
+        gamePoints: calculatePoints(false),
       });
     }
   };
@@ -119,7 +119,7 @@ function App() {
     setShowModalNick(false);
     setOpenModalClass("");
     localStorage.setItem("nick", nickPlayer);
-    await apiRank.post("/new", { nick: nickPlayer, points: 0 });
+    await apiRank.post("/new", { nick: nickPlayer });
     location.reload();
   };
 

@@ -4,7 +4,7 @@ import Loading from "./Loading";
 import challenger from "../assets/challenger.png";
 import diamond from "../assets/diamond.png";
 import bronze from "../assets/bronze.png";
-import "../styles/ranking.css"
+import "../styles/ranking.css";
 interface RankingProps {
   show: boolean;
 }
@@ -26,7 +26,11 @@ export default function Ranking({ show }: RankingProps) {
         (item: any) => item.nick === playerName
       )[0];
 
-      localStorage.setItem("points", filter.points);
+      if (filter.points) {
+        localStorage.setItem("points", filter.points);
+      } else {
+        localStorage.setItem("points", "0");
+      }
     } catch (err) {
       console.log(err);
     } finally {
