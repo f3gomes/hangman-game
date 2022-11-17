@@ -189,7 +189,7 @@ function App() {
         />
       </div>
       <div
-        className={`max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center mt-5 first-blur ${openModalClass}`}
+        className={`max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center first-blur ${openModalClass}`}
       >
         <img
           src={logo}
