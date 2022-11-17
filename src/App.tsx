@@ -162,7 +162,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    console.log(championName)
     handleGetTitle(championName);
     handleGetSplash(championName);
   }, [championName]);
@@ -232,7 +231,7 @@ function App() {
         <Footer />
         <ModalCredits show={showModalCredits} />
         <button
-          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-10"
+          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-10 msl:absolute"
           onClick={handleOpenCredits}
         >
           <img src={copyright} alt="copyright" />
