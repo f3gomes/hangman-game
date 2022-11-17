@@ -214,7 +214,7 @@ function App() {
               guessedLetters={guessedLetters}
               nameToGuess={championName.toLocaleLowerCase()}
             />
-            <div className="self-stretch mxl:mt-2">
+            <div className="self-stretch">
               <Keyboard
                 disabled={isWinnner || isLoser}
                 activeLetters={guessedLetters.filter((letter) =>
@@ -231,7 +231,7 @@ function App() {
         <Footer />
         <ModalCredits show={showModalCredits} />
         <button
-          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-10 msl:absolute"
+          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-8"
           onClick={handleOpenCredits}
         >
           <img src={copyright} alt="copyright" />
