@@ -55,7 +55,7 @@ export default function Ranking({ show }: RankingProps) {
     <div
       className={`${
         show ? "" : "hidden"
-      } animate-page absolute right-0 mt-14 w-96 h-2/3 bg-905 rounded-tl-3xl rounded-bl-3xl mxl:h-3/4`}
+      } animate-page absolute right-0 mt-20 w-96 h-2/3 bg-905 rounded-tl-3xl rounded-bl-3xl mxl:h-3/4`}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">

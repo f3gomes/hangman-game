@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { champions } from "./data/list";
 import HangmanDraw from "./components/HangmanDraw";
 import HangmanName from "./components/HangmanName";
@@ -40,6 +40,8 @@ function App() {
   const missedLetters = guessedLetters.filter(
     (letter) => !championName.toLocaleLowerCase().includes(letter)
   );
+
+  const refOne = useRef<any>(null);
 
   const isLoser = missedLetters.length >= 6;
   const isWinnner = championName
@@ -165,6 +167,16 @@ function App() {
     handleGetTitle(championName);
     handleGetSplash(championName);
   }, [championName]);
+
+  const handleClickOutside = (event: any) => {
+    if (!refOne?.current?.contains(event.target)) {
+      setShowModalRanking(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+  }, []);
 
   return (
     <div className="msl:w-11/12">
