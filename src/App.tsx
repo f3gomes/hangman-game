@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { champions } from "./data/list";
 import HangmanDraw from "./components/HangmanDraw";
 import HangmanName from "./components/HangmanName";
@@ -6,12 +6,14 @@ import Keyboard from "./components/Keyboard";
 import ModalResult from "./components/ModalResult";
 import logo from "./assets/logo.svg";
 import rankingIcon from "./assets/ranking_icon.svg";
-import { api, apiRank } from "./services/api";
+import { apiRank } from "./services/api";
 import Ranking from "./components/Ranking";
 import Footer from "./components/Footer";
 import ModalEnterNick from "./components/ModalEnterNick";
-import copyright from "./assets/copyright.svg";
 import ModalCredits from "./components/ModalCredits";
+import { calculatePoints } from "./functions/calculatePoints";
+import { handleGetTitle } from "./services/getTitle";
+import { handleGetSplash } from "./services/getSplash";
 
 const newName = () => {
   return champions[Math.floor(Math.random() * champions.length)];
@@ -44,6 +46,7 @@ function App() {
   const refOne = useRef<any>(null);
 
   const isLoser = missedLetters.length >= 6;
+
   const isWinnner = championName
     .toLocaleLowerCase()
     .split("")
@@ -62,34 +65,6 @@ function App() {
     [guessedLetters, isWinnner, isLoser]
   );
 
-  const handleGetTitle = async (name: string) => {
-    try {
-      const resp = await api("");
-      const arr = resp.data.data;
-      setChampionTitle(arr[`${name}`]?.title);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleGetSplash = async (championName: string) => {
-    let name = championName.charAt(0).toUpperCase() + championName.slice(1);
-    try {
-      fetch(
-        `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg`
-      )
-        .then((res) => {
-          return res.blob();
-        })
-        .then((blob) => {
-          let img = URL.createObjectURL(blob);
-          setSplashImg(img);
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   const handleCloseModal = () => {
     setShowModalResult(false);
   };
@@ -101,7 +76,12 @@ function App() {
       setOpenModalClass("modal-blur");
       apiRank.post("/new", {
         nick: nickPlayer,
-        gamePoints: calculatePoints(true),
+        gamePoints: calculatePoints(
+          true,
+          championName,
+          missedLetters,
+          setPlusPoints
+        ),
       });
     }
 
@@ -112,7 +92,12 @@ function App() {
       setOpenModalClass("modal-blur");
       apiRank.post("/new", {
         nick: nickPlayer,
-        gamePoints: calculatePoints(false),
+        gamePoints: calculatePoints(
+          true,
+          championName,
+          missedLetters,
+          setPlusPoints
+        ),
       });
     }
   };
@@ -125,19 +110,14 @@ function App() {
     location.reload();
   };
 
-  const calculatePoints = (win: boolean) => {
-    const points = Number(localStorage.getItem("points"));
-    if (win) {
-      const total = (championName.length - missedLetters.length + 6) * 10;
-      setPlusPoints(total);
-      return total + points;
-    } else {
-      return points - 100;
-    }
-  };
-
   const handleOpenCredits = () => {
     setShowModalCredits(!showModalCredits);
+  };
+
+  const handleClickOutside = (event: any) => {
+    if (!refOne?.current?.contains(event.target)) {
+      setShowModalRanking(false);
+    }
   };
 
   useEffect(() => {
@@ -157,6 +137,7 @@ function App() {
     };
 
     document.addEventListener("keypress", handler);
+    document.addEventListener("click", handleClickOutside, true);
 
     return () => {
       document.removeEventListener("keypress", handler);
@@ -164,40 +145,32 @@ function App() {
   }, []);
 
   useEffect(() => {
-    handleGetTitle(championName);
-    handleGetSplash(championName);
+    handleGetTitle(championName, setChampionTitle);
+    handleGetSplash(championName, setSplashImg);
   }, [championName]);
-
-  const handleClickOutside = (event: any) => {
-    if (!refOne?.current?.contains(event.target)) {
-      setShowModalRanking(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", handleClickOutside, true);
-  }, []);
 
   return (
     <div className="msl:w-11/12">
       <div className="flex justify-center">
         <ModalEnterNick
           show={showModalNick}
-          onDisabled={nickPlayer ? false : true}
-          handleOnChange={(event: any) => setNickPlayer(event.target.value)}
           handleStartGame={handleStartGame}
+          onDisabled={nickPlayer ? false : true}
+          handleOnChange={(event: React.FormEvent<HTMLInputElement>) =>
+            setNickPlayer(event.currentTarget.value)
+          }
         />
         <ModalResult
-          show={showModalResult}
-          closeModal={handleCloseModal}
           splash={splashImg}
+          isWinner={wonTheGame}
+          show={showModalResult}
+          plusPoints={plusPoints}
+          closeModal={handleCloseModal}
+          championTitle={championTitle}
           championName={
             championName.toLocaleLowerCase().charAt(0).toUpperCase() +
             championName.slice(1)
           }
-          championTitle={championTitle}
-          isWinner={wonTheGame}
-          plusPoints={plusPoints}
         />
       </div>
       <div
@@ -240,14 +213,8 @@ function App() {
         )}
 
         <Ranking show={showModalRanking} key={missedLetters.length} />
-        <Footer />
         <ModalCredits show={showModalCredits} />
-        <button
-          className="absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-8"
-          onClick={handleOpenCredits}
-        >
-          <img src={copyright} alt="copyright" />
-        </button>
+        <Footer handleOpenCredits={handleOpenCredits} show={showModalResult} />
       </div>
     </div>
   );

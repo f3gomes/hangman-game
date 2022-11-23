@@ -1,5 +1,4 @@
 import React from "react";
-
 interface HangmanNameProps {
   reveal?: boolean;
   guessedLetters: string[];

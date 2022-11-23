@@ -12,7 +12,6 @@ interface ModalResultProps {
 
 export default function ModalResult({
   show,
-  closeModal,
   splash,
   plusPoints,
   championName,
@@ -59,8 +58,8 @@ export default function ModalResult({
               </p>
             </div>
             <div className="p-6 space-y-6 flex justify-center">
-              <p className="text-xl text-gray-500 dark:text-gray-400">
-                {championTitle}
+              <p className="text-xl text-gray-500 dark:text-gray-400 ml-4">
+                {championTitle.charAt(0).toUpperCase() + championTitle.slice(1)}
               </p>
             </div>
             <div className="text-center">

@@ -2,6 +2,24 @@
 @tailwind utilities;
 @tailwind components;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 1080px) {
+  html {
+    font-size: 93.75%;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
 :root {
   background-color: #2c2f3e;
   color: rgba(255, 255, 255, 0.87);
@@ -9,6 +27,7 @@
 }
 
 body {
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
