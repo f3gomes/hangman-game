@@ -5,7 +5,7 @@ export default function Footer({ handleOpenCredits, show }: any) {
   return (
     <footer>
       <div
-        className={`text-slate-300 left-0 w-full text-sm bottom-3 absolute text-center font-sans ${
+        className={`text-slate-300 left-0 w-full text-sm bottom-3 absolute text-center ${
           !show ? "" : "hidden"
         } msl:hidden`}
       >

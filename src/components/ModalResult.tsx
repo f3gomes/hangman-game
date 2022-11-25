@@ -48,12 +48,12 @@ export default function ModalResult({
               >
                 Você {isWinner ? "acertou" : "errou"}!
               </h3>
-              <p className="text-gray-900 font-sans">
+              <p className="text-gray-900">
                 {isWinner ? `+${plusPoints}` : "-100"}
               </p>
             </div>
             <div className="flex justify-center">
-              <p className="text-gray-900 text-4xl font-bold font-sans">
+              <p className="text-gray-900 text-4xl font-bold">
                 {championName}
               </p>
             </div>
@@ -63,7 +63,7 @@ export default function ModalResult({
               </p>
             </div>
             <div className="text-center">
-              <p className="text-slate-900 text-center font-sans ml-6 msl:-m-2 msl:text-sm">
+              <p className="text-slate-900 text-center ml-6 msl:-m-2 msl:text-sm">
                 Pressione <strong>ENTER</strong> para um novo jogo!
               </p>
             </div>

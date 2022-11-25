@@ -64,7 +64,7 @@ export default function Ranking({ show }: RankingProps) {
       ) : (
         <>
           <div className="ml-6 mt-6">
-            <div className="bg-906 w-16 h-16 rounded-full flex justify-center items-center text-4xl font-sans">
+            <div className="bg-906 w-16 h-16 rounded-full flex justify-center items-center text-4xl">
               {playerName.charAt(0).toUpperCase()}
             </div>
             <div className="absolute font-bold text-4xl ml-20 -mt-14">
@@ -79,7 +79,7 @@ export default function Ranking({ show }: RankingProps) {
             {rankingTable.map(
               (item: any, index: number) =>
                 index < 10 && (
-                  <div key={index} className="font-sans">
+                  <div key={index}>
                     <span className="flex flex-row">
                       <span className="text-2xl font-bold">{item?.nick}</span>
                       <span>
