@@ -11,7 +11,7 @@ export default function HangmanName({
   reveal = false,
 }: HangmanNameProps) {
   return (
-    <div className="flex gap-1 text-6xl font-bold uppercase justify-center msl:-mt-48 mxl:-mt-9">
+    <div className="flex gap-1 text-6xl font-bold uppercase justify-center msl:-mt-48 mxl:-mt-9 mxl3:-mt-20">
       {nameToGuess.split("").map((letter, index) => (
         <span
           key={index}
