@@ -34,3 +34,7 @@ body {
 .first-blur.modal-blur > *:not(.modal) {
   -webkit-filter: opacity(30%);
 }
+
+.font-resp {
+  font-size: 6vw;
+}

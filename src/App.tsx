@@ -179,7 +179,7 @@ function App() {
         <img
           src={logo}
           alt="logotipo"
-          className="absolute left-3 top-2 w-64 msl:w-40"
+          className="absolute left-3 top-2 w-64 msl:w-28"
         />
         <button
           className="absolute right-5 top-5 cursor-pointer focus:outline-none"
@@ -189,7 +189,7 @@ function App() {
           <img src={rankingIcon} alt="ranking icon" />
         </button>
 
-        <div className={`${showModalNick ? "invisible" : ""}`}>
+        <div className={`${showModalNick ? "invisible" : ""} -mt-9`}>
           <HangmanDraw guesses={missedLetters.length} />
         </div>
         {!showModalResult && (
@@ -199,7 +199,7 @@ function App() {
               guessedLetters={guessedLetters}
               nameToGuess={championName.toLocaleLowerCase()}
             />
-            <div className="self-stretch">
+            <div className="self-stretch msl:ml-10">
               <Keyboard
                 disabled={isWinnner || isLoser}
                 activeLetters={guessedLetters.filter((letter) =>
