@@ -116,7 +116,7 @@ const bodyParts = [
 
 export default function HangmanDraw({ guesses }: HangmanDrawProps) {
   return (
-    <div className="relative mt-10 mb-44 mxl:mb-16 mxl3:mb-48 msl:mt-20 msl:mr-28">
+    <div className="relative mt-10 mb-44 mxl:mb-16 mxl3:mb-48 msl:mt-24 msl:mr-28">
       {Array.from(bodyParts).slice(0, guesses)}
       <div className="bg-903 absolute h-8 w-2 right-0"></div>
       <div className="bg-903 h-2 w-52 ml-32"></div>
