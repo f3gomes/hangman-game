@@ -22,6 +22,7 @@ module.exports = {
 
       width: {
         909: "700px",
+        910: "720px",
       },
 
       margin: {

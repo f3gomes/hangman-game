@@ -210,7 +210,7 @@ function App() {
               />
             </div>
             <div
-              className={`self-stretch msl:ml-10 ${
+              className={`flex justify-center ${
                 showModalNick || showModalResult ? "invisible" : ""
               }`}
             >
