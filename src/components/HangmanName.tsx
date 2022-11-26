@@ -13,9 +13,12 @@ export default function HangmanName({
   return (
     <div className="flex gap-1 text-6xl font-bold uppercase justify-center msl:-mt-48 mxl:-mt-9">
       {nameToGuess.split("").map((letter, index) => (
-        <span key={index} className="border-b-8 w-14 ml-4 msl:w-6 msl:border-b-4">
+        <span
+          key={index}
+          className="border-b-8 w-14 ml-4 msl:w-6 msl:border-b-4"
+        >
           <span
-            className="font-resp"
+            className="font-resp mxl3:text-7xl"
             style={{
               visibility:
                 guessedLetters.includes(letter) || reveal

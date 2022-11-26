@@ -38,7 +38,7 @@ module.exports = {
 
         mxl2: { min: "1520px" },
 
-        mxl3: { min: "2133px" },
+        mxl3: { min: "1919px" },
 
         msl: { max: "800px" },
       },
