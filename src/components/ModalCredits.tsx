@@ -27,7 +27,7 @@ export default function ModalCredits({ show }: ModalCreditsProps) {
         <a href="https://github.com/fomes" target={"_blank"} className="-mr-6">
           <AiFillGithub size={50} />
         </a>
-        <a href="https://www.behance.net" target={"_blank"}>
+        <a href="https://www.behance.net/k4udesign" target={"_blank"}>
           <AiFillBehanceCircle size={50} />
         </a>
       </div>

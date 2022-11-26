@@ -2,6 +2,25 @@
 @tailwind utilities;
 @tailwind components;
 
+@font-face {
+  font-family: "BeaufortforLOL-Bold";
+  src: url("http://db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.eot"); /* IE9*/
+  src: url("http://db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.eot?#iefix")
+      format("embedded-opentype"),
+    /* IE6-IE8 */
+      url("http://db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.woff2")
+      format("woff2"),
+    /* chrome firefox */
+      url("http://db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.woff")
+      format("woff"),
+    /* chrome firefox */
+      url("http://db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.ttf")
+      format("truetype"),
+    /* chrome firefox opera Safari, Android, iOS 4.2+*/
+      url("http://db.onlinewebfonts.com/t/12420e8c141ca7c3dff41de2d59df13e.svg#BeaufortforLOL-Bold")
+      format("svg"); /* iOS 4.1- */
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -28,6 +47,7 @@
 body {
   font-family: "BeaufortforLOL-Bold";
   -webkit-font-smoothing: antialiased;
+  -webkit-appearance: none;
 }
 
 .first-blur.modal-blur > *:not(.modal) {
