@@ -44,7 +44,7 @@ export default function Keyboard({
   handleIncludeGuessedLetter,
 }: KeyboardProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-4 w-910 msl:w-11/12 msl:-mt-24 mxl3:-mt-20">
+    <div className="flex flex-wrap justify-center gap-4 w-910 msl:w-11/12 msl:-mt-24 mxl3:-mt-16">
       {keys.map((key) => {
         const isActive = activeLetters.includes(key);
         const isInactive = inactiveLetters.includes(key);
