@@ -93,7 +93,7 @@ function App() {
       apiRank.post("/new", {
         nick: nickPlayer,
         gamePoints: calculatePoints(
-          true,
+          false,
           championName,
           missedLetters,
           setPlusPoints
@@ -189,17 +189,31 @@ function App() {
           <img src={rankingIcon} alt="ranking icon" />
         </button>
 
-        <div className={`${showModalNick ? "invisible" : ""} -mt-9`}>
+        <div
+          className={`${
+            showModalNick || showModalResult ? "invisible" : ""
+          } -mt-9`}
+        >
           <HangmanDraw guesses={missedLetters.length} />
         </div>
         {!showModalResult && (
           <>
-            <HangmanName
-              reveal={isLoser}
-              guessedLetters={guessedLetters}
-              nameToGuess={championName.toLocaleLowerCase()}
-            />
-            <div className="self-stretch msl:ml-10">
+            <div
+              className={`${
+                showModalNick || showModalResult ? "invisible" : ""
+              }`}
+            >
+              <HangmanName
+                reveal={isLoser}
+                guessedLetters={guessedLetters}
+                nameToGuess={championName.toLocaleLowerCase()}
+              />
+            </div>
+            <div
+              className={`self-stretch msl:ml-10 ${
+                showModalNick || showModalResult ? "invisible" : ""
+              }`}
+            >
               <Keyboard
                 disabled={isWinnner || isLoser}
                 activeLetters={guessedLetters.filter((letter) =>
