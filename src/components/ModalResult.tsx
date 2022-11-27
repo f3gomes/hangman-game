@@ -30,11 +30,11 @@ export default function ModalResult({
         aria-hidden="true"
         className="flex justify-center items-center absolute md:inset-0 h-modal md:h-full"
       >
-        <div className="splash w-80 h-80 text-901 bg-904 rounded-full z-50 flex justify-center msl:-ml-40 msl:mt-20">
+        <div className="splash w-80 h-80 text-901 bg-904 rounded-full z-50 flex justify-center msl:-ml-44 msl:mt-20 msl:w-96 msl:h-96">
           <img src={splash} alt="splash" className="rounded-full h-full" />
         </div>
 
-        <div className="relative p-4 w-96 h-full -ml-20 md:h-auto msl:absolute msl:mt-800">
+        <div className="relative p-4 w-96 h-full -ml-20 md:h-auto msl:absolute msl:mt-800 msl:-ml-32">
           <div
             className={`relative ${
               isWinner ? "bg-904" : "bg-red-300"
