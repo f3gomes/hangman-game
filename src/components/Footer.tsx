@@ -5,9 +5,9 @@ export default function Footer({ handleOpenCredits, show }: any) {
   return (
     <footer>
       <div
-        className={`text-slate-300 left-0 w-full text-sm bottom-3 absolute text-center ${
+        className={`text-slate-300 left-0 w-full text-sm bottom-3 absolute text-center msl:text-xs msl:w-10/12 msl:left-7 ${
           !show ? "" : "hidden"
-        } msl:hidden`}
+        }`}
       >
         Todos os direitos de “League of Legends” e seus atributos são reservados
         à Riot Games, Inc.
