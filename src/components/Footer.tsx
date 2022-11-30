@@ -13,7 +13,7 @@ export default function Footer({ handleOpenCredits, show }: any) {
         à Riot Games, Inc.
       </div>
       <button
-        className={`absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-8 msl:${
+        className={`absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-8 ${
           show && "hidden"
         }`}
         onClick={handleOpenCredits}

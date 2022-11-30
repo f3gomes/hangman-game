@@ -182,7 +182,9 @@ function App() {
           className="absolute left-3 top-2 w-64 msl:w-28"
         />
         <button
-          className="absolute right-5 top-5 cursor-pointer focus:outline-none"
+          className={`absolute right-5 top-5 cursor-pointer focus:outline-none ${
+            showModalResult && "hidden"
+          }`}
           disabled={showModalNick}
           onClick={toggleModalRanking}
         >
