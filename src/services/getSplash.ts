@@ -5,7 +5,7 @@ export const handleGetSplash = async (
   let name = championName.charAt(0).toUpperCase() + championName.slice(1);
   try {
     fetch(
-      `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${name}_0.jpg`
+      `https://gilthedo.sirv.com/Splash/${name}_0.jpg`
     )
       .then((res) => {
         return res.blob();
