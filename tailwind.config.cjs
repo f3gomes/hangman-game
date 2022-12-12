@@ -20,9 +20,19 @@ module.exports = {
         904: "#44A580",
       },
 
+      borderRadius: {
+        "4xl": "50px",
+      },
+
+      height: {
+        912: "830px",
+        913: "93%",
+      },
+
       width: {
         909: "700px",
         910: "720px",
+        911: "567px",
       },
 
       margin: {

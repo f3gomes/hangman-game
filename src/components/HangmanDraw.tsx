@@ -38,12 +38,14 @@ const rightArm = () => {
     <div
       key={3}
       style={{
-        width: "80px",
+        width: "70px",
         height: "10px",
         background: "white",
         position: "absolute",
         top: "110px",
-        right: "-80px",
+        right: "-63px",
+        rotate: "40deg",
+        transformOrigin: "left bottom",
       }}
     ></div>
   );
@@ -54,12 +56,14 @@ const leftArm = () => {
     <div
       key={4}
       style={{
-        width: "80px",
+        width: "70px",
         height: "10px",
         background: "white",
         position: "absolute",
         top: "110px",
-        right: "10px",
+        right: "0px",
+        rotate: "-40deg",
+        transformOrigin: "right bottom",
       }}
     ></div>
   );
@@ -70,12 +74,12 @@ const rightLeg = () => {
     <div
       key={5}
       style={{
-        width: "100px",
+        width: "80px",
         height: "10px",
         background: "white",
         position: "absolute",
         top: "170px",
-        right: "-90px",
+        right: "-70px",
         rotate: "60deg",
         transformOrigin: "left bottom",
       }}
@@ -88,7 +92,7 @@ const leftLeg = () => {
     <div
       key={6}
       style={{
-        width: "100px",
+        width: "80px",
         height: "10px",
         background: "white",
         position: "absolute",
@@ -116,7 +120,7 @@ const bodyParts = [
 
 export default function HangmanDraw({ guesses }: HangmanDrawProps) {
   return (
-    <div className="relative mt-10 mb-44 mxl:mb-16 mxl3:mb-48 msl:mt-24 msl:mr-28">
+    <div className="relative mt-10 mb-44 mxl:mb-16 mxl3:mb-48 msl:mt-36 msl:mr-40">
       {Array.from(bodyParts).slice(0, guesses)}
       <div className="bg-903 absolute h-8 w-2 right-0"></div>
       <div className="bg-903 h-2 w-52 ml-32"></div>

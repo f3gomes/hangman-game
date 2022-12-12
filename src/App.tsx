@@ -14,6 +14,7 @@ import ModalCredits from "./components/ModalCredits";
 import { calculatePoints } from "./functions/calculatePoints";
 import { handleGetTitle } from "./services/getTitle";
 import { handleGetSplash } from "./services/getSplash";
+import ModalHelp from "./components/ModalHelp";
 
 const newName = () => {
   return champions[Math.floor(Math.random() * champions.length)];
@@ -25,6 +26,7 @@ function App() {
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
+  const [showModalHelp, setShowModalHelp] = useState(true);
   const [showModalNick, setShowModalNick] = useState(
     localStorage.getItem("nick") ? false : true
   );
@@ -116,8 +118,14 @@ function App() {
 
   const handleClickOutside = (event: any) => {
     if (!refOne?.current?.contains(event.target)) {
+      setShowModalHelp(false);
       setShowModalRanking(false);
+      setShowModalCredits(false);
     }
+  };
+
+  const handleOpenHelp = () => {
+    setShowModalHelp(!showModalHelp);
   };
 
   useEffect(() => {
@@ -126,6 +134,10 @@ function App() {
   ("");
 
   useEffect(() => {
+    if (localStorage.getItem("nick")) {
+      setShowModalHelp(false);
+    }
+
     const handler = (e: KeyboardEvent) => {
       const key = e.key;
       if (key !== "Enter") return;
@@ -152,6 +164,8 @@ function App() {
   return (
     <div className="msl:w-11/12">
       <div className="flex justify-center">
+        <ModalHelp show={showModalHelp} />
+
         <ModalEnterNick
           show={showModalNick}
           handleStartGame={handleStartGame}
@@ -179,7 +193,7 @@ function App() {
         <img
           src={logo}
           alt="logotipo"
-          className="absolute left-3 top-2 w-64 msl:w-28"
+          className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:top-6"
         />
         <button
           className={`absolute right-5 top-5 cursor-pointer focus:outline-none ${
@@ -230,7 +244,11 @@ function App() {
 
         <Ranking show={showModalRanking} key={missedLetters.length} />
         <ModalCredits show={showModalCredits} />
-        <Footer handleOpenCredits={handleOpenCredits} show={showModalResult} />
+        <Footer
+          show={showModalResult}
+          handleOpenCredits={handleOpenCredits}
+          handleOpenHelp={handleOpenHelp}
+        />
       </div>
     </div>
   );
