@@ -121,11 +121,13 @@ function App() {
       setShowModalHelp(false);
       setShowModalRanking(false);
       setShowModalCredits(false);
+      setOpenModalClass("");
     }
   };
 
   const handleOpenHelp = () => {
     setShowModalHelp(!showModalHelp);
+    setOpenModalClass("modal-blur");
   };
 
   useEffect(() => {
