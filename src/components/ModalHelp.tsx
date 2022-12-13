@@ -14,7 +14,7 @@ export default function ModalHelp({ show }: ModalHelpProps) {
     <div
       className={`${
         show ? "" : "hidden"
-      } absolute top-3 bg-905 h-914 w-911 text-center rounded-4xl z-10 flex flex-col items-center justify-between p-3 msl:w-11/12 msl:h-913 msl:ml-9 msl:rounded-3xl msl:p-2`}
+      } absolute top-3 bg-905 h-914 w-911 text-center rounded-4xl z-10 flex flex-col items-center justify-between p-3 msl:w-11/12 msl:h-913 msl:ml-9 msl:rounded-3xl msl:p-2 tall:h-913`}
     >
       <p className="text-lg">
         <h1 className="text-3xl msl:text-2xl">Ajuda</h1>
@@ -52,7 +52,11 @@ export default function ModalHelp({ show }: ModalHelpProps) {
         letras que você errar.
       </p>
 
-      <img src={correct} alt="modal correto" className="w-6/12 msl:w-64 tall:w-4/12" />
+      <img
+        src={correct}
+        alt="modal correto"
+        className="w-6/12 msl:w-64 tall:w-4/12"
+      />
 
       <p className="text-lg msl:text-base">
         Se errar a letra, aparecerá uma parte do corpo na Forca <br /> e{" "}
@@ -60,14 +64,22 @@ export default function ModalHelp({ show }: ModalHelpProps) {
         pontuação do <span className="text-904">acerto</span>
       </p>
 
-      <img src={hangman} alt="hangman" className="w-2/12 msl:w-16 tall:w-1/12" />
+      <img
+        src={hangman}
+        alt="hangman"
+        className="w-2/12 msl:w-16 tall:w-1/12 mxl2:w-1/12"
+      />
 
       <p className="text-lg msl:text-base">
         Errou o campeão? A forca estará completa e você perde <br />
         <span className="text-907">100 pontos</span>!
       </p>
 
-      <img src={wrong} alt="modal errado" className="w-6/12 msl:w-64 tall:w-4/12" />
+      <img
+        src={wrong}
+        alt="modal errado"
+        className="w-6/12 msl:w-64 tall:w-4/12"
+      />
     </div>
   );
 }

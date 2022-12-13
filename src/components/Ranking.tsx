@@ -56,7 +56,7 @@ export default function Ranking({ show, classRanking }: RankingProps) {
     <div
       className={`${
         show ? "" : "hidden"
-      } ${classRanking} absolute right-0 mt-20 w-96 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl mxl:h-3/4 msl:h-910`}
+      } ${classRanking} absolute right-0 mt-20 w-96 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910`}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">
