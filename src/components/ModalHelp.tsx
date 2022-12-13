@@ -22,21 +22,21 @@ export default function ModalHelp({ show }: ModalHelpProps) {
 
       <h1 className="text-4xl msl:text-2xl">Como funciona?</h1>
       <p className="text-lg">
-        Clique em uma letra aleatória no teclado virtual. <br /> Se acertar, a
-        letra aparecerá na tela e você não perderá pontos.{" "}
+        Clique em uma letra aleatória do teclado. <br /> Se acertar, a letra
+        aparecerá na tela e você não perderá pontos.{" "}
       </p>
 
       <div className="flex">
-        {letterArr.map((item: any) => {
+        {letterArr.map((item: any, index: number) => {
           if (item === "A") {
             return (
-              <span className="border-b-4 w-6 ml-3">
+              <span className="border-b-4 w-6 ml-3" key={index}>
                 <span className="text-3xl">A</span>
               </span>
             );
           } else {
             return (
-              <span className="border-b-4 w-6 ml-3">
+              <span className="border-b-4 w-6 ml-3" key={index}>
                 <span className="text-905">___</span>
               </span>
             );

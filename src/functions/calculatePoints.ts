@@ -1,3 +1,16 @@
+function coutDuplicateChar(text: any) {
+  text = [...text.toLowerCase()];
+  var counts: any = {};
+  let tally = 0;
+  text.forEach((x: any) => {
+    counts[x] = (counts[x] || 0) + 1;
+  });
+  for (let count in counts) {
+    if (counts[count] > 1) tally++;
+  }
+  return tally;
+}
+
 export const calculatePoints = (
   win: boolean,
   championName: string,
@@ -6,7 +19,12 @@ export const calculatePoints = (
 ) => {
   const points = Number(localStorage.getItem("points"));
   if (win) {
-    const total = (championName.length - missedLetters.length + 6) * 10;
+    const total =
+      (championName.length -
+        coutDuplicateChar(championName) -
+        missedLetters.length +
+        6) *
+      10;
     setPlusPoints(total);
     return total + points;
   } else {
