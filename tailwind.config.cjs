@@ -27,6 +27,7 @@ module.exports = {
       height: {
         912: "830px",
         913: "93%",
+        914: "96%",
       },
 
       width: {
@@ -51,6 +52,8 @@ module.exports = {
         mxl3: { min: "1919px" },
 
         msl: { max: "800px" },
+
+        tall: { raw: "(max-height: 720px)" },
       },
     },
   },
