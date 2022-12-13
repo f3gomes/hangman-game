@@ -26,7 +26,11 @@ function App() {
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
-  const [showModalHelp, setShowModalHelp] = useState(true);
+  const [classCredits, setClassCredits] = useState("hidden");
+  const [classRanking, setClassRanking] = useState("hidden");
+  const [showModalHelp, setShowModalHelp] = useState(
+    localStorage.getItem("nick") ? false : true
+  );
   const [showModalNick, setShowModalNick] = useState(
     localStorage.getItem("nick") ? false : true
   );
@@ -54,8 +58,14 @@ function App() {
     .split("")
     .every((letter) => guessedLetters.includes(letter));
 
-  const toggleModalRanking = () => {
-    setShowModalRanking(!showModalRanking);
+  const handleOpenRanking = () => {
+    setShowModalRanking(true);
+    setClassRanking("animate-page");
+  };
+
+  const handleOpenCredits = () => {
+    setShowModalCredits(true);
+    setClassCredits("animate-page");
   };
 
   const handleIncludeGuessedLetter = useCallback(
@@ -112,16 +122,12 @@ function App() {
     location.reload();
   };
 
-  const handleOpenCredits = () => {
-    setShowModalCredits(!showModalCredits);
-  };
-
   const handleClickOutside = (event: any) => {
     if (!refOne?.current?.contains(event.target)) {
       setShowModalHelp(false);
-      setShowModalRanking(false);
-      setShowModalCredits(false);
       setOpenModalClass("");
+      setClassCredits("animate-back");
+      setClassRanking("animate-back");
     }
   };
 
@@ -202,7 +208,7 @@ function App() {
             showModalResult && "hidden"
           }`}
           disabled={showModalNick}
-          onClick={toggleModalRanking}
+          onClick={handleOpenRanking}
         >
           <img src={rankingIcon} alt="ranking icon" />
         </button>
@@ -244,8 +250,12 @@ function App() {
           </>
         )}
 
-        <Ranking show={showModalRanking} key={missedLetters.length} />
-        <ModalCredits show={showModalCredits} />
+        <Ranking
+          show={showModalRanking}
+          key={missedLetters.length}
+          classRanking={classRanking}
+        />
+        <ModalCredits show={showModalCredits} classCredits={classCredits} />
         <Footer
           show={showModalResult}
           handleOpenCredits={handleOpenCredits}

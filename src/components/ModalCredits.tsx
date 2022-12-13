@@ -3,14 +3,18 @@ import { AiFillGithub, AiFillBehanceCircle } from "react-icons/ai";
 
 interface ModalCreditsProps {
   show: boolean;
+  classCredits: string;
 }
 
-export default function ModalCredits({ show }: ModalCreditsProps) {
+export default function ModalCredits({
+  show,
+  classCredits,
+}: ModalCreditsProps) {
   return (
     <div
       className={`${
         show ? "" : "hidden"
-      } bg-902 absolute bottom-20 right-3 rounded-xl text-901 font-bold text-center animate-page w-80 msl:bottom-16`}
+      } bg-902 absolute bottom-20 right-0 rounded-xl text-901 font-bold text-center ${classCredits} w-80 msl:bottom-16`}
     >
       <h2 className="uppercase text-xl p-3 mb-2">Criadores</h2>
 

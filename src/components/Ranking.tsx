@@ -7,9 +7,10 @@ import bronze from "../assets/bronze.png";
 import "../styles/ranking.css";
 interface RankingProps {
   show: boolean;
+  classRanking: string;
 }
 
-export default function Ranking({ show }: RankingProps) {
+export default function Ranking({ show, classRanking }: RankingProps) {
   const [rankingTable, setRankingTable] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [playerName, setPlayerName] = useState(
@@ -55,7 +56,7 @@ export default function Ranking({ show }: RankingProps) {
     <div
       className={`${
         show ? "" : "hidden"
-      } animate-page absolute right-0 mt-20 w-96 h-2/3 bg-905 rounded-tl-3xl rounded-bl-3xl mxl:h-3/4`}
+      } ${classRanking} absolute right-0 mt-20 w-96 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl mxl:h-3/4 msl:h-910`}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">

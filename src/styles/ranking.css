@@ -9,8 +9,30 @@
     transform: scaleX(1);
     transform-origin: 100% 100%;
   }
+
   100% {
     transform: scaleX(0);
+    transform-origin: 100% 100%;
+  }
+}
+
+/* BACK */
+
+.animate-back {
+  animation: linear forwards;
+  animation-direction: reverse;
+  animation-name: out;
+  animation-duration: 0.4s;
+}
+
+@keyframes out {
+  0% {
+    transform: scaleX(0);
+    transform-origin: 100% 100%;
+  }
+
+  100% {
+    transform: scaleX(1);
     transform-origin: 100% 100%;
   }
 }
