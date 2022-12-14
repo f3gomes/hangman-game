@@ -14,7 +14,7 @@ export default function ModalCredits({
     <div
       className={`${
         show ? "" : "hidden"
-      } bg-902 absolute bottom-20 right-0 rounded-tl-xl text-901 font-bold text-center ${classCredits} w-80 msl:bottom-16`}
+      } bg-902 absolute bottom-20 right-0 rounded-tl-xl rounded-bl-xl text-901 font-bold text-center ${classCredits} w-80 msl:bottom-16`}
     >
       <h2 className="uppercase text-xl p-3 mb-2">Criadores</h2>
 

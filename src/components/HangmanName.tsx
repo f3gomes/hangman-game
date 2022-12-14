@@ -18,7 +18,7 @@ export default function HangmanName({
           className="border-b-8 w-14 ml-4 msl:w-6 msl:border-b-4"
         >
           <span
-            className="font-resp mxl3:text-7xl"
+            className="text-7xl msl:text-4xl"
             style={{
               visibility:
                 guessedLetters.includes(letter) || reveal

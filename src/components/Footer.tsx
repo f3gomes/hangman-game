@@ -27,9 +27,7 @@ export default function Footer({
       </button>
 
       <button
-        className={`absolute right-20 bottom-3 cursor-pointer focus:outline-none msl:w-8 msl:left-3 ${
-          show && "hidden"
-        }`}
+        className={`absolute right-20 bottom-3 cursor-pointer focus:outline-none msl:w-8 msl:left-3`}
         onClick={handleOpenHelp}
       >
         <img src={tips} alt="copyright" />

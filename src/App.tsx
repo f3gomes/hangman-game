@@ -128,6 +128,7 @@ function App() {
       setOpenModalClass("");
       setClassCredits("animate-back");
       setClassRanking("animate-back");
+      setShowModalRanking(false);
     }
   };
 
@@ -182,6 +183,7 @@ function App() {
             setNickPlayer(event.currentTarget.value)
           }
         />
+
         <ModalResult
           splash={splashImg}
           isWinner={wonTheGame}
