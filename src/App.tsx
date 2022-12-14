@@ -203,7 +203,7 @@ function App() {
         <img
           src={logo}
           alt="logotipo"
-          className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:top-6"
+          className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:ml-9 msl:top-6"
         />
         <button
           className={`absolute right-5 top-5 cursor-pointer focus:outline-none ${

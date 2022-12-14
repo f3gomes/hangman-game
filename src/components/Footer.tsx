@@ -8,19 +8,15 @@ export default function Footer({
   handleOpenHelp,
 }: any) {
   return (
-    <footer>
+    <footer className={`${!show ? "" : "hidden"}`}>
       <div
-        className={`text-slate-300 left-0 w-full text-sm bottom-3 absolute text-center msl:text-xs msl:w-9/12 msl:left-14 ${
-          !show ? "" : "hidden"
-        }`}
+        className={`text-slate-300 left-0 w-full text-sm bottom-3 absolute text-center msl:text-xs msl:w-9/12 msl:left-14`}
       >
         Todos os direitos de “League of Legends” e seus atributos são reservados
         à Riot Games, Inc.
       </div>
       <button
-        className={`absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-8 ${
-          show && "hidden"
-        }`}
+        className={`absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-8`}
         onClick={handleOpenCredits}
       >
         <img src={copyright} alt="copyright" />
