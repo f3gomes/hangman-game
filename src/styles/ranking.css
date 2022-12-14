@@ -1,7 +1,7 @@
 .animate-page {
   animation-direction: reverse;
   animation-name: in;
-  animation-duration: 0.4s;
+  animation-duration: 0.3s;
 }
 
 @keyframes in {
@@ -22,7 +22,7 @@
   animation: linear forwards;
   animation-direction: reverse;
   animation-name: out;
-  animation-duration: 0.4s;
+  animation-duration: 0.3s;
 }
 
 @keyframes out {

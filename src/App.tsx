@@ -4,7 +4,7 @@ import HangmanDraw from "./components/HangmanDraw";
 import HangmanName from "./components/HangmanName";
 import Keyboard from "./components/Keyboard";
 import ModalResult from "./components/ModalResult";
-import logo from "./assets/logo.svg";
+import logo from "./assets/logo.png";
 import rankingIcon from "./assets/ranking_icon.svg";
 import { apiRank } from "./services/api";
 import Ranking from "./components/Ranking";
