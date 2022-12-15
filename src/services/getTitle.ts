@@ -4,6 +4,14 @@ export const handleGetTitle = async (
   name: string,
   setChampionTitle: (name: string) => void
 ) => {
+  if (name === "Wukong") {
+    name = "MonkeyKing";
+  }
+
+  if (name === "Bardo") {
+    name = "Bard";
+  }
+
   try {
     const resp = await api("");
     const arr = resp.data.data;
