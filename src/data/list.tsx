@@ -100,7 +100,7 @@ export const champions = [
   "Rammus",
   "RekSai",
   "Rell",
-  "Renata",
+  "RenataGlasc",
   "Renekton",
   "Rengar",
   "Riven",

@@ -12,6 +12,10 @@ export const handleGetTitle = async (
     name = "Bard";
   }
 
+  if (name === "RenataGlasc") {
+    name = "Renata";
+  }
+
   try {
     const resp = await api("");
     const arr = resp.data.data;

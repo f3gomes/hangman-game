@@ -17,13 +17,13 @@ export default function ModalHelp({ show }: ModalHelpProps) {
       } absolute top-3 bg-905 h-914 w-911 text-center rounded-4xl z-10 flex flex-col items-center justify-between p-3 msl:w-11/12 msl:h-913 msl:ml-9 msl:rounded-3xl msl:p-2 tall:h-913`}
     >
       <p className="text-lg">
-        <h1 className="text-3xl msl:text-2xl">Ajuda</h1>
+        <span className="text-3xl msl:text-2xl block">Ajuda</span>
         Advinhe o campeão de League of Legends da vez.
       </p>
       <hr className="bg-white w-11/12" />
 
       <p className="text-lg">
-        <h1 className="text-3xl msl:text-2xl">Como funciona?</h1>
+        <span className="text-3xl msl:text-2xl block">Como funciona?</span>
         Clique em uma letra aleatória do teclado. <br /> Se acertar, a letra
         aparecerá na tela e você não perderá pontos.{" "}
       </p>
