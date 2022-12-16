@@ -81,40 +81,40 @@ function App() {
     setShowModalResult(false);
   };
 
+  const resultGame = (value: boolean) => {
+    setWonTheGame(value);
+    setShowModalResult(true);
+    setOpenModalClass("modal-blur");
+    apiRank.post("/new", {
+      nick: nickPlayer,
+      gamePoints: calculatePoints(
+        value,
+        championName,
+        missedLetters,
+        setPlusPoints
+      ),
+    });
+  };
+
   const handleShowModal = () => {
     if (isWinnner) {
-      setWonTheGame(true);
-      setShowModalResult(true);
-      setOpenModalClass("modal-blur");
-      apiRank.post("/new", {
-        nick: nickPlayer,
-        gamePoints: calculatePoints(
-          true,
-          championName,
-          missedLetters,
-          setPlusPoints
-        ),
-      });
+      resultGame(true);
     }
 
     if (isLoser) {
       setPlusPoints(0);
-      setWonTheGame(false);
-      setShowModalResult(true);
-      setOpenModalClass("modal-blur");
-      apiRank.post("/new", {
-        nick: nickPlayer,
-        gamePoints: calculatePoints(
-          false,
-          championName,
-          missedLetters,
-          setPlusPoints
-        ),
-      });
+      resultGame(false);
     }
   };
 
-  const handleStartGame = async () => {
+  const handleNewGame = () => {
+    setShowModalResult(false);
+    setOpenModalClass("");
+    setGuessedLetters([]);
+    setChampionName(newName());
+  };
+
+  const handleStartFirstGame = async () => {
     setShowModalNick(false);
     setOpenModalClass("");
     localStorage.setItem("nick", nickPlayer);
@@ -134,7 +134,6 @@ function App() {
 
   const handleOpenHelp = () => {
     setShowModalHelp(!showModalHelp);
-    setOpenModalClass("modal-blur");
   };
 
   useEffect(() => {
@@ -151,10 +150,7 @@ function App() {
       const key = e.key;
       if (key !== "Enter") return;
       e.preventDefault();
-      setShowModalResult(false);
-      setOpenModalClass("");
-      setGuessedLetters([]);
-      setChampionName(newName());
+      handleNewGame();
     };
 
     document.addEventListener("keypress", handler);
@@ -177,7 +173,7 @@ function App() {
 
         <ModalEnterNick
           show={showModalNick}
-          handleStartGame={handleStartGame}
+          handleStartGame={handleStartFirstGame}
           onDisabled={nickPlayer ? false : true}
           handleOnChange={(event: React.FormEvent<HTMLInputElement>) =>
             setNickPlayer(event.currentTarget.value)

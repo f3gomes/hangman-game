@@ -18,6 +18,7 @@ export default function Footer({
       <button
         className={`absolute right-3 bottom-3 cursor-pointer focus:outline-none msl:w-8`}
         onClick={handleOpenCredits}
+        disabled={show}
       >
         <img src={copyright} alt="copyright" />
       </button>
@@ -25,6 +26,7 @@ export default function Footer({
       <button
         className={`absolute right-20 bottom-3 cursor-pointer focus:outline-none msl:w-8 msl:left-3`}
         onClick={handleOpenHelp}
+        disabled={show}
       >
         <img src={tips} alt="copyright" />
       </button>
