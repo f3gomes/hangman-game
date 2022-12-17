@@ -10,7 +10,7 @@ const head = () => {
         borderRadius: "100%",
         border: "10px solid white",
         position: "absolute",
-        top: "31px",
+        top: "27px",
         right: "-20px",
       }}
     ></div>
@@ -23,10 +23,10 @@ const body = () => {
       key={2}
       style={{
         width: "10px",
-        height: "100px",
+        height: "105px",
         background: "white",
         position: "absolute",
-        top: "80px",
+        top: "76.5px",
         right: 0,
       }}
     ></div>

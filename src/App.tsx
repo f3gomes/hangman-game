@@ -26,6 +26,7 @@ function App() {
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
+  const [loadingFirstGame, setLoadingFirstGame] = useState(false);
   const [classCredits, setClassCredits] = useState("hidden");
   const [classRanking, setClassRanking] = useState("hidden");
   const [showModalHelp, setShowModalHelp] = useState(
@@ -116,6 +117,7 @@ function App() {
 
   const handleStartFirstGame = async () => {
     setShowModalNick(false);
+    setLoadingFirstGame(true);
     setOpenModalClass("");
     localStorage.setItem("nick", nickPlayer);
     await apiRank.post("/new", { nick: nickPlayer });
@@ -225,11 +227,15 @@ function App() {
                 showModalNick || showModalResult ? "invisible" : ""
               }`}
             >
-              <HangmanName
-                reveal={isLoser}
-                guessedLetters={guessedLetters}
-                nameToGuess={championName.toLocaleLowerCase()}
-              />
+              {!loadingFirstGame ? (
+                <HangmanName
+                  reveal={isLoser}
+                  guessedLetters={guessedLetters}
+                  nameToGuess={championName.toLocaleLowerCase()}
+                />
+              ) : (
+                <h3 className="msl:-mt-32 mxl2:-mt-12">Carregando...</h3>
+              )}
             </div>
             <div
               className={`flex justify-center ${

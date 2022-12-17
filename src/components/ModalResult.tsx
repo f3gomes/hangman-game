@@ -38,13 +38,13 @@ export default function ModalResult({
           <div
             className={`relative ${
               isWinner ? "bg-904" : "bg-red-300"
-            } rounded-3xl shadow dark:bg-gray-700 msl:w-11/12`}
+            } rounded-3xl shadow msl:w-11/12`}
           >
             <div className="flex justify-between items-start p-4 rounded-t">
               <h3
                 className={`text-xl font-semibold ml-24 ${
                   isWinner ? "text-902" : "text-907"
-                } dark:text-white ml-32 uppercase msl:ml-16`}
+                } text-white ml-32 uppercase msl:ml-16`}
               >
                 Você {isWinner ? "acertou" : "errou"}!
               </h3>
@@ -60,7 +60,7 @@ export default function ModalResult({
               <p className="text-gray-900 text-4xl font-bold">{championName}</p>
             </div>
             <div className="p-6 space-y-6 flex justify-center">
-              <p className="text-xl text-gray-500 dark:text-gray-400 ml-4">
+              <p className="text-xl text-gray-500 ml-4">
                 {championTitle.charAt(0).toUpperCase() + championTitle.slice(1)}
               </p>
             </div>
