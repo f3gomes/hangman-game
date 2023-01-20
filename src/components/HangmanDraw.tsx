@@ -5,13 +5,13 @@ const head = () => {
     <div
       key={1}
       style={{
-        width: "50px",
-        height: "50px",
+        width: "70px",
+        height: "70px",
         borderRadius: "100%",
         border: "10px solid white",
         position: "absolute",
         top: "27px",
-        right: "-20px",
+        right: "-30px",
       }}
     ></div>
   );
@@ -23,11 +23,12 @@ const body = () => {
       key={2}
       style={{
         width: "10px",
-        height: "105px",
+        height: "90px",
         background: "white",
         position: "absolute",
-        top: "76.5px",
+        top: "90px",
         right: 0,
+        borderRadius: "8px",
       }}
     ></div>
   );
@@ -38,14 +39,15 @@ const rightArm = () => {
     <div
       key={3}
       style={{
-        width: "70px",
+        width: "60px",
         height: "10px",
         background: "white",
         position: "absolute",
-        top: "93px",
-        right: "-63px",
-        rotate: "40deg",
+        top: "105px",
+        right: "-54px",
+        rotate: "20deg",
         transformOrigin: "left bottom",
+        borderRadius: "8px",
       }}
     ></div>
   );
@@ -56,14 +58,15 @@ const leftArm = () => {
     <div
       key={4}
       style={{
-        width: "70px",
+        width: "60px",
         height: "10px",
         background: "white",
         position: "absolute",
-        top: "90px",
-        right: "0px",
-        rotate: "-40deg",
+        top: "105px",
+        right: "-0px",
+        rotate: "-20deg",
         transformOrigin: "right bottom",
+        borderRadius: "8px",
       }}
     ></div>
   );
@@ -74,14 +77,15 @@ const rightLeg = () => {
     <div
       key={5}
       style={{
-        width: "80px",
+        width: "60px",
         height: "10px",
         background: "white",
         position: "absolute",
-        top: "170px",
-        right: "-70px",
-        rotate: "60deg",
+        top: "167px",
+        right: "-50px",
+        rotate: "50deg",
         transformOrigin: "left bottom",
+        borderRadius: "8px",
       }}
     ></div>
   );
@@ -92,14 +96,15 @@ const leftLeg = () => {
     <div
       key={6}
       style={{
-        width: "80px",
+        width: "60px",
         height: "10px",
         background: "white",
         position: "absolute",
-        top: "170px",
+        top: "167px",
         right: 0,
-        rotate: "-60deg",
+        rotate: "-50deg",
         transformOrigin: "right bottom",
+        borderRadius: "8px",
       }}
     ></div>
   );
@@ -122,10 +127,11 @@ export default function HangmanDraw({ guesses }: HangmanDrawProps) {
   return (
     <div className="relative mt-10 mb-44 mxl:mb-16 mxl3:mb-48 msl:mt-28 msl:mr-40">
       {Array.from(bodyParts).slice(0, guesses)}
-      <div className="bg-white absolute h-8 w-2 right-0"></div>
-      <div className="bg-white h-2 w-52 ml-32"></div>
+      <div className="bg-white absolute h-8 w-2 right-0 rounded-lg"></div>
+      <div className="bg-white h-2 w-44 ml-32"></div>
+      <div className="bg-white h-2 w-24 ml-29 top-8 rounded-lg absolute -rotate-45 msl:ml-30"></div>
       <div className="bg-white h-72 w-2 ml-32 mxl:h-64 msl:h-64"></div>
-      <div className="bg-white h-2 w-16 ml-24"></div>
+      <div className="bg-white h-2 w-20 ml-24 rounded-lg"></div>
     </div>
   );
 }

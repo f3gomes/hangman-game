@@ -42,6 +42,11 @@ module.exports = {
         800: "800px",
       },
 
+      spacing: {
+        "29": "115px",
+        "30": "103px",
+      },
+
       gridTemplateColumns: {
         21: "repeat(auto-fit, minmax(75px, 1fr))",
       },

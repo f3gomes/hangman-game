@@ -215,7 +215,7 @@ function App() {
 
         <div
           className={`${
-            showModalNick || showModalResult ? "invisible" : ""
+            showModalNick || showModalResult ? "" : ""
           } -mt-9`}
         >
           <HangmanDraw guesses={missedLetters.length} />
