@@ -44,7 +44,7 @@ export default function Keyboard({
   handleIncludeGuessedLetter,
 }: KeyboardProps) {
   return (
-    <div className="flex flex-wrap justify-center gap-4 w-910 msl:ml-8 msl:gap-1 msl:w-11/12 msl:-mt-24 mxl3:-mt-10">
+    <div className="flex flex-wrap justify-center gap-4 w-910 msl:ml-8 msl:gap-1 msl:w-11/12">
       {keys.map((key) => {
         const isActive = activeLetters.includes(key);
         const isInactive = inactiveLetters.includes(key);
@@ -56,7 +56,7 @@ export default function Keyboard({
             key={key}
             className={`text-901 rounded-xl btn ${isActive ? "active" : ""} ${
               isInactive ? "inactive" : ""
-            } mxl:w-11 h-11 text-3xl msl:w-12 mxl:-mt-1`}
+            } mxl:w-11 h-11 text-3xl msl:w-12`}
           >
             {key}
           </button>

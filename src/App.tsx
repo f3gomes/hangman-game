@@ -214,9 +214,7 @@ function App() {
         </button>
 
         <div
-          className={`${
-            showModalNick || showModalResult ? "" : ""
-          } -mt-9`}
+          className={`${showModalNick || showModalResult ? "invisible" : ""}`}
         >
           <HangmanDraw guesses={missedLetters.length} />
         </div>
@@ -234,7 +232,7 @@ function App() {
                   nameToGuess={championName.toLocaleLowerCase()}
                 />
               ) : (
-                <h3 className="msl:-mt-32 mxl2:-mt-12">Carregando...</h3>
+                <h3>Carregando...</h3>
               )}
             </div>
             <div
