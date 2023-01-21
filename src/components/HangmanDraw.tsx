@@ -125,9 +125,9 @@ const bodyParts = [
 
 export default function HangmanDraw({ guesses }: HangmanDrawProps) {
   return (
-    <div className="relative mt-20 -ml-24">
+    <div className="relative mt-16 -ml-24">
       {Array.from(bodyParts).slice(0, guesses)}
-      <div className="bg-white absolute h-8 w-2 right-0 rounded-lg"></div>
+      <div className="bg-white absolute h-9 w-2 right-0 rounded-lg"></div>
       <div className="bg-white h-2 w-44 ml-32"></div>
       <div className="bg-white h-2 w-24 ml-29 top-8 rounded-lg absolute -rotate-45 msl:ml-30"></div>
       <div className="bg-white h-72 w-2 ml-32"></div>
