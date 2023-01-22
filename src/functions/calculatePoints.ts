@@ -28,6 +28,10 @@ export const calculatePoints = (
     setPlusPoints(total);
     return total + points;
   } else {
-    return points - 100;
+    if (Number(localStorage.getItem("points")) >= 100) {
+      return points - 100;
+    } else {
+      return 1;
+    }
   }
 };

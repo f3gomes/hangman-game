@@ -78,14 +78,14 @@ function App() {
     setShowModalResult(false);
   };
 
-  const resultGame = (value: boolean) => {
-    setWonTheGame(value);
+  const resultGame = (result: boolean) => {
+    setWonTheGame(result);
     setShowModalResult(true);
     setOpenModalClass("modal-blur");
     apiRank.post("/new", {
       nick: nickPlayer,
       gamePoints: calculatePoints(
-        value,
+        result,
         championName,
         missedLetters,
         setPlusPoints

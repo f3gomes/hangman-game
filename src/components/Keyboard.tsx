@@ -54,9 +54,9 @@ export default function Keyboard({
             onClick={() => handleIncludeGuessedLetter(key)}
             disabled={isInactive || isActive || disabled}
             key={key}
-            className={`text-901 rounded-xl btn ${isActive ? "active" : ""} ${
-              isInactive ? "inactive" : ""
-            } mxl:w-11 h-11 text-3xl msl:w-12`}
+            className={`text-901 transition rounded-xl btn ${
+              isActive ? "active" : ""
+            } ${isInactive ? "inactive" : ""} mxl:w-11 h-11 text-3xl msl:w-12`}
           >
             {key}
           </button>

@@ -44,15 +44,15 @@ export default function ModalResult({
               <h3
                 className={`text-xl font-semibold ml-24 ${
                   isWinner ? "text-902" : "text-907"
-                } text-white ml-32 uppercase msl:ml-16`}
+                } text-white ml-32 uppercase drop-shadow-lg msl:ml-16`}
               >
                 Você {isWinner ? "acertou" : "errou"}!
               </h3>
               <p className="text-gray-900">
                 {isWinner ? (
-                  <span className="text-green-600">+{plusPoints}</span>
+                  <span className="text-green-600 text-xl">+{plusPoints}</span>
                 ) : (
-                  <span className="text-red-500">-100</span>
+                  <span className="text-red-500 text-xl">-100</span>
                 )}
               </p>
             </div>
