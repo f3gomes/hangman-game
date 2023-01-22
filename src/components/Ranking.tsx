@@ -31,7 +31,7 @@ export default function Ranking({ show }: RankingProps) {
   return (
     <div
       className={`${
-        show ? "content show" : "content"
+        show ? "content showRanking" : "content"
       } absolute right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910`}
     >
       {isLoading ? (
@@ -45,7 +45,13 @@ export default function Ranking({ show }: RankingProps) {
               {playerName.charAt(0).toUpperCase()}
             </div>
             <div className="absolute font-bold text-4xl ml-20 -mt-14">
-              {playerName}
+              <a
+                href={`https://www.op.gg/summoners/br/${playerName}`}
+                className="cursor-pointer transition brightness-90 hover:brightness-125"
+                target={"_blank"}
+              >
+                {playerName}
+              </a>
             </div>
             <span className="absolute font-bold text-lg ml-20 -mt-6">
               {localStorage.getItem("points")}

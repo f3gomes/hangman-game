@@ -27,7 +27,6 @@ function App() {
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
   const [loadingFirstGame, setLoadingFirstGame] = useState(false);
-  const [classCredits, setClassCredits] = useState("hidden");
   const [showModalHelp, setShowModalHelp] = useState(
     localStorage.getItem("nick") ? false : true
   );
@@ -64,7 +63,6 @@ function App() {
 
   const handleOpenCredits = () => {
     setShowModalCredits(true);
-    setClassCredits("animate-page");
   };
 
   const handleIncludeGuessedLetter = useCallback(
@@ -126,8 +124,8 @@ function App() {
     if (!refOne?.current?.contains(event.target)) {
       setShowModalHelp(false);
       setOpenModalClass("");
-      setClassCredits("animate-back");
       setShowModalRanking(false);
+      setShowModalCredits(false);
     }
   };
 
@@ -201,7 +199,7 @@ function App() {
           className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:ml-9 msl:top-3"
         />
         <button
-          className={`absolute right-5 top-5 cursor-pointer focus:outline-none ${
+          className={`absolute right-5 top-5 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${
             showModalResult && "hidden"
           }`}
           disabled={showModalNick}
@@ -250,7 +248,7 @@ function App() {
         )}
 
         <Ranking show={showModalRanking} key={missedLetters.length} />
-        <ModalCredits show={showModalCredits} classCredits={classCredits} />
+        <ModalCredits show={showModalCredits} />
         <Footer
           show={showModalResult}
           handleOpenCredits={handleOpenCredits}

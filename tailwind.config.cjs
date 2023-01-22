@@ -45,6 +45,7 @@ module.exports = {
       spacing: {
         "29": "115px",
         "30": "103px",
+        "45": "169px"
       },
 
       gridTemplateColumns: {

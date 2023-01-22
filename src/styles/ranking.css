@@ -1,48 +1,13 @@
-.animate-page {
-  animation-direction: reverse;
-  animation-name: in;
-  animation-duration: 0.3s;
-}
-
-@keyframes in {
-  0% {
-    transform: scaleX(1);
-    transform-origin: 100% 100%;
-  }
-
-  100% {
-    transform: scaleX(0);
-    transform-origin: 100% 100%;
-  }
-}
-
-/* BACK */
-
-.animate-back {
-  animation: linear forwards;
-  animation-direction: reverse;
-  animation-name: out;
-  animation-duration: 0.3s;
-}
-
-@keyframes out {
-  0% {
-    transform: scaleX(0);
-    transform-origin: 100% 100%;
-  }
-
-  100% {
-    transform: scaleX(1);
-    transform-origin: 100% 100%;
-  }
-}
-
 .content {
   width: 0;
   overflow: hidden;
   transition: width ease 0.3s;
 }
 
-.content.show {
+.content.showRanking {
   width: 24rem;
+}
+
+.content.showCredits {
+  width: 20rem;
 }
