@@ -28,7 +28,6 @@ function App() {
   const [showModalCredits, setShowModalCredits] = useState(false);
   const [loadingFirstGame, setLoadingFirstGame] = useState(false);
   const [classCredits, setClassCredits] = useState("hidden");
-  const [classRanking, setClassRanking] = useState("hidden");
   const [showModalHelp, setShowModalHelp] = useState(
     localStorage.getItem("nick") ? false : true
   );
@@ -61,7 +60,6 @@ function App() {
 
   const handleOpenRanking = () => {
     setShowModalRanking(true);
-    setClassRanking("animate-page");
   };
 
   const handleOpenCredits = () => {
@@ -129,7 +127,6 @@ function App() {
       setShowModalHelp(false);
       setOpenModalClass("");
       setClassCredits("animate-back");
-      setClassRanking("animate-back");
       setShowModalRanking(false);
     }
   };
@@ -252,11 +249,7 @@ function App() {
           </>
         )}
 
-        <Ranking
-          show={showModalRanking}
-          key={missedLetters.length}
-          classRanking={classRanking}
-        />
+        <Ranking show={showModalRanking} key={missedLetters.length} />
         <ModalCredits show={showModalCredits} classCredits={classCredits} />
         <Footer
           show={showModalResult}

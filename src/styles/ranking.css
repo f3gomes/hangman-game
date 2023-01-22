@@ -36,3 +36,13 @@
     transform-origin: 100% 100%;
   }
 }
+
+.content {
+  width: 0;
+  overflow: hidden;
+  transition: width ease 0.3s;
+}
+
+.content.show {
+  width: 24rem;
+}

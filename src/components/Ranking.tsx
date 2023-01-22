@@ -8,10 +8,9 @@ import "../styles/ranking.css";
 import { handleGetRanking } from "../services/getRanking";
 interface RankingProps {
   show: boolean;
-  classRanking: string;
 }
 
-export default function Ranking({ show, classRanking }: RankingProps) {
+export default function Ranking({ show }: RankingProps) {
   const [rankingTable, setRankingTable] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [playerName, setPlayerName] = useState(
@@ -32,8 +31,8 @@ export default function Ranking({ show, classRanking }: RankingProps) {
   return (
     <div
       className={`${
-        show ? "" : "hidden"
-      } ${classRanking} absolute right-0 mt-20 w-96 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910`}
+        show ? "content show" : "content"
+      } absolute right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910`}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">
