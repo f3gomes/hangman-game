@@ -1,4 +1,4 @@
-function coutDuplicateChar(text: any) {
+function countDuplicateChar(text: any) {
   text = [...text.toLowerCase()];
   var counts: any = {};
   let tally = 0;
@@ -21,7 +21,7 @@ export const calculatePoints = (
   if (win) {
     const total =
       (championName.length -
-        coutDuplicateChar(championName) -
+        countDuplicateChar(championName) -
         missedLetters.length +
         6) *
       10;
