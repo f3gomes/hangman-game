@@ -130,7 +130,7 @@ export default function HangmanDraw({ guesses }: HangmanDrawProps) {
       <div className="bg-white absolute h-9 w-2 right-0 rounded-lg"></div>
       <div className="bg-white h-2 w-44 ml-32"></div>
       <div className="bg-white h-2 w-24 ml-29 top-8 rounded-lg absolute -rotate-45 msl:ml-30"></div>
-      <div className="bg-white h-72 w-2 ml-32"></div>
+      <div className="bg-white h-64 w-2 ml-32"></div>
       <div className="bg-white h-2 w-20 ml-24 rounded-lg"></div>
     </div>
   );

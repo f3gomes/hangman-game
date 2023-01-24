@@ -10,11 +10,11 @@ export default function ModalCredits({ show }: ModalCreditsProps) {
     <div
       className={`${
         show ? "content showCredits" : "content"
-      } bg-902 absolute h-45 bottom-20 right-0 rounded-tl-xl rounded-bl-xl text-901 font-bold text-center msl:bottom-16`}
+      } bg-902 absolute h-45 bottom-20 right-0 rounded-tl-xl rounded-bl-xl text-901 font-bold text-center flex-col flex justify-center gap-1`}
     >
-      <h2 className="uppercase text-xl p-3 mb-2">Criadores</h2>
+      <h2 className="uppercase text-xl">Criadores</h2>
 
-      <div className="flex flex-col mb-3">
+      <div className="flex flex-col">
         <span>
           Felipe "
           <a href="https://github.com/fomes" target={"_blank"}>
@@ -35,7 +35,7 @@ export default function ModalCredits({ show }: ModalCreditsProps) {
         </span>
       </div>
 
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center">
         <a href="https://github.com/fomes" target={"_blank"}>
           <AiFillGithub size={50} />
         </a>

@@ -5,7 +5,6 @@ export const handleGetRanking = async (
   apiRank: any
 ) => {
   try {
-    console.log("GET")
     setIsLoading(true);
     const resp = await apiRank.get("/ranking");
     setRankingTable(resp.data.rank);
