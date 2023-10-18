@@ -1,6 +1,3 @@
-import React from "react";
-import "../styles/keyboard.css";
-
 const keys = [
   "a",
   "b",

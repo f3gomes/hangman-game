@@ -13,6 +13,10 @@ module.exports = {
         907: "#E35B5B",
       },
 
+      fontFamily: {
+        beaufort: "BeaufortforLOL-Bold",
+      },
+
       textColor: {
         901: "#272A2F",
         902: "#28805E",
@@ -43,9 +47,9 @@ module.exports = {
       },
 
       spacing: {
-        "29": "115px",
-        "30": "103px",
-        "45": "169px"
+        29: "115px",
+        30: "103px",
+        45: "169px",
       },
 
       gridTemplateColumns: {
