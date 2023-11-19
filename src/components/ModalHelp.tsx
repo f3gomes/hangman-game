@@ -12,8 +12,8 @@ export default function ModalHelp({ show }: ModalHelpProps) {
   return (
     <div
       className={`${
-        show ? "opacity-100" : "opacity-0"
-      } absolute top-3 bg-905 h-914 w-911 text-center rounded-4xl z-10 flex flex-col items-center justify-between p-3 msl:w-11/12 msl:h-913 msl:ml-9 msl:rounded-3xl msl:p-2 tall:h-913 transition-all duration-300`}
+        !show && "hidden"
+      } fixed top-3 bg-905 h-914 w-911 text-center rounded-4xl z-10 flex flex-col items-center justify-between p-3 msl:w-11/12 msl:h-913 msl:ml-9 msl:rounded-3xl msl:p-2 tall:h-913 transition-all duration-300`}
     >
       <p className="text-lg">
         <span className="text-3xl msl:text-2xl block">Ajuda</span>
