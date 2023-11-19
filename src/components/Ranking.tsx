@@ -30,8 +30,8 @@ export default function Ranking({ show }: RankingProps) {
   return (
     <div
       className={`${
-        show ? "content showRanking" : "content"
-      } absolute right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910`}
+        show ? "translate-x-0" : "translate-x-full"
+      } absolute right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910 w-[384px] transition-all duration-500`}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">

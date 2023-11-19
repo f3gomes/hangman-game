@@ -63,19 +63,6 @@ body {
   @apply bg-[#80d4ff] transition-all duration-300;
 }
 
-.content {
-  @apply w-0 overflow-hidden;
-  transition: width ease 0.3s;
-}
-
-.content.showRanking {
-  @apply w-[384px];
-}
-
-.content.showCredits {
-  @apply w-[320px];
-}
-
 @keyframes spin {
   to {
     transform: rotate(360deg);

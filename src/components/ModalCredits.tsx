@@ -9,8 +9,8 @@ export default function ModalCredits({ show }: ModalCreditsProps) {
   return (
     <div
       className={`${
-        show ? "content showCredits" : "content"
-      } bg-902 absolute h-45 bottom-20 right-0 rounded-tl-xl rounded-bl-xl text-901 font-bold text-center flex-col flex justify-center gap-1`}
+        show ? "translate-x-0" : "translate-x-full"
+      } bg-902 absolute h-45 bottom-20 right-0 w-[320px] rounded-tl-xl rounded-bl-xl text-901 font-bold text-center flex-col flex justify-center gap-1 transition-all duration-500`}
     >
       <h2 className="uppercase text-xl">Criadores</h2>
 
