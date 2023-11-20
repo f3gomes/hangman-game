@@ -164,7 +164,7 @@ function App() {
   }, [championName]);
 
   return (
-    <div className="msl:w-11/12">
+    <div className="min-h-screen">
       <div className="flex justify-center">
         <ModalHelp show={showModalHelp} />
 
@@ -191,7 +191,7 @@ function App() {
         />
       </div>
       <div
-        className={`max-w-3xl flex flex-col gap-8 my-0 mx-auto items-center first-blur ${openModalClass}`}
+        className={`w-screen flex flex-col gap-8 my-0 mx-auto items-center first-blur ${openModalClass}`}
       >
         <img
           src={logo}
