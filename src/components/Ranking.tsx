@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
-import { apiRank } from "../services/api";
 import Loading from "./Loading";
-import challenger from "../assets/challenger.png";
-import diamond from "../assets/diamond.png";
 import bronze from "../assets/bronze.png";
+import diamond from "../assets/diamond.png";
+import challenger from "../assets/challenger.png";
+
+import { apiRank } from "../services/api";
+import { useEffect, useState } from "react";
 import { handleGetRanking } from "../services/getRanking";
 interface RankingProps {
   show: boolean;
