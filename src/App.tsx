@@ -1,20 +1,22 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { champions } from "./data/list";
+
+import logo from "./assets/logo.png";
+import Footer from "./components/Footer";
+import Ranking from "./components/Ranking";
+import Keyboard from "./components/Keyboard";
+import ModalHelp from "./components/ModalHelp";
 import HangmanDraw from "./components/HangmanDraw";
 import HangmanName from "./components/HangmanName";
-import Keyboard from "./components/Keyboard";
 import ModalResult from "./components/ModalResult";
-import logo from "./assets/logo.png";
 import rankingIcon from "./assets/ranking_icon.svg";
-import { apiRank } from "./services/api";
-import Ranking from "./components/Ranking";
-import Footer from "./components/Footer";
-import ModalEnterNick from "./components/ModalEnterNick";
 import ModalCredits from "./components/ModalCredits";
-import { calculatePoints } from "./functions/calculatePoints";
+import ModalEnterNick from "./components/ModalEnterNick";
+
+import { apiRank } from "./services/api";
+import { champions } from "./data/list";
 import { handleGetTitle } from "./services/getTitle";
 import { handleGetSplash } from "./services/getSplash";
-import ModalHelp from "./components/ModalHelp";
+import { calculatePoints } from "./functions/calculatePoints";
 
 const newName = () => {
   return champions[Math.floor(Math.random() * champions.length)];
@@ -22,21 +24,23 @@ const newName = () => {
 
 function App() {
   const [championName, setChampionName] = useState(newName());
+  const [plusPoints, setPlusPoints] = useState<number>(0);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+
+  const [splashImg, setSplashImg] = useState("");
+  const [championTitle, setChampionTitle] = useState("");
+  const [wonTheGame, setWonTheGame] = useState(false);
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
   const [loadingFirstGame, setLoadingFirstGame] = useState(false);
+
   const [showModalHelp, setShowModalHelp] = useState(
     localStorage.getItem("nick") ? false : true
   );
   const [showModalNick, setShowModalNick] = useState(
     localStorage.getItem("nick") ? false : true
   );
-  const [splashImg, setSplashImg] = useState("");
-  const [championTitle, setChampionTitle] = useState("");
-  const [wonTheGame, setWonTheGame] = useState(false);
-  const [plusPoints, setPlusPoints] = useState<number>(0);
   const [openModalClass, setOpenModalClass] = useState(
     localStorage.getItem("nick" ? "" : "modal-blur")
   );
