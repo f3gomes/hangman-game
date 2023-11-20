@@ -1,4 +1,3 @@
-import React from "react";
 interface HangmanNameProps {
   reveal?: boolean;
   guessedLetters: string[];
@@ -15,7 +14,7 @@ export default function HangmanName({
       {nameToGuess.split("").map((letter, index) => (
         <span
           key={index}
-          className="border-b-8 w-14 ml-4 msl:w-6 msl:border-b-4"
+          className="flex justify-center border-b-8 w-14 ml-4 msl:w-6 msl:border-b-4"
         >
           <span
             className="text-7xl msl:text-4xl"
