@@ -86,9 +86,10 @@ function App() {
     setWonTheGame(result);
     setShowModalResult(true);
     setOpenModalClass("modal-blur");
-    apiRank.post("/new", {
+
+    apiRank.post("/ranking/new", {
       nick: nickPlayer,
-      gamePoints: calculatePoints(
+      points: calculatePoints(
         result,
         championName,
         missedLetters,
@@ -203,9 +204,8 @@ function App() {
           className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:ml-9 msl:top-3"
         />
         <button
-          className={`absolute right-5 top-5 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${
-            showModalResult && "hidden"
-          }`}
+          className={`absolute right-5 top-5 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${showModalResult && "hidden"
+            }`}
           disabled={showModalNick}
           onClick={handleOpenRanking}
         >
@@ -220,9 +220,8 @@ function App() {
         {!showModalResult && (
           <>
             <div
-              className={`${
-                showModalNick || showModalResult ? "invisible" : ""
-              }`}
+              className={`${showModalNick || showModalResult ? "invisible" : ""
+                }`}
             >
               {!loadingFirstGame ? (
                 <HangmanName
@@ -235,9 +234,8 @@ function App() {
               )}
             </div>
             <div
-              className={`flex justify-center ${
-                showModalNick || showModalResult ? "invisible" : ""
-              }`}
+              className={`flex justify-center ${showModalNick || showModalResult ? "invisible" : ""
+                }`}
             >
               <Keyboard
                 disabled={isWinnner || isLoser}

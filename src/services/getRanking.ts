@@ -8,7 +8,6 @@ export const handleGetRanking = async (
     setIsLoading(true);
     const resp = await apiRank.get("/ranking");
 
-    console.log(resp.data);
     setRankingTable(resp.data);
 
     const filter = resp.data.filter((item: any) => item.nick === playerName)[0];

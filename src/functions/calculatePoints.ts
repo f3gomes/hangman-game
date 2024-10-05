@@ -31,7 +31,7 @@ export const calculatePoints = (
     if (Number(localStorage.getItem("points")) >= 100) {
       return points - 100;
     } else {
-      return 1;
+      return 0;
     }
   }
 };
