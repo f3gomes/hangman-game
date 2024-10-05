@@ -7,11 +7,11 @@ export const handleGetRanking = async (
   try {
     setIsLoading(true);
     const resp = await apiRank.get("/ranking");
-    setRankingTable(resp.data.rank);
 
-    const filter = resp.data.rank.filter(
-      (item: any) => item.nick === playerName
-    )[0];
+    console.log(resp.data);
+    setRankingTable(resp.data);
+
+    const filter = resp.data.filter((item: any) => item.nick === playerName)[0];
 
     if (filter.points) {
       localStorage.setItem("points", filter.points);

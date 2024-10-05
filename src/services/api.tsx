@@ -6,5 +6,5 @@ export const api = axios.create({
 });
 
 export const apiRank = axios.create({
-  baseURL: "https://ranking-app.adaptable.app",
+  baseURL: import.meta.env.VITE_API_KEY,
 });
