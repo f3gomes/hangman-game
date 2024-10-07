@@ -1,4 +1,4 @@
-import { api } from "./api";
+import { apiChampions } from "./api";
 
 export const handleGetTitle = async (
   name: string,
@@ -17,7 +17,7 @@ export const handleGetTitle = async (
   }
 
   try {
-    const resp = await api("");
+    const resp = await apiChampions("");
     const arr = resp.data.data;
     setChampionTitle(arr[`${name}`]?.title);
   } catch (err) {
