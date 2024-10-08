@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import { CurrentChampionProps, useGlobalContext } from "../context/champion";
+import { CurrentChampionProps, useGlobalContext } from "../context/global";
 
 interface ModalResultProps {
   show: boolean;
   isWinner: boolean;
-  plusPoints: number;
+  currentPoints: number;
   closeModal: () => void;
   championType: CurrentChampionProps;
 }
 
 export default function ModalResult({
   show,
-  plusPoints,
+  currentPoints,
   isWinner,
 }: ModalResultProps) {
   const handleReloadPage = () => {
@@ -36,11 +36,7 @@ export default function ModalResult({
         className="flex justify-center items-center absolute md:inset-0 h-modal md:h-full"
       >
         <div className="splash w-80 h-80 text-901 bg-904 rounded-full z-50 flex justify-center msl:-ml-44 msl:mt-20 msl:w-96 msl:h-96">
-          <img
-            alt="splash"
-            src={champion.splash}
-            className="rounded-full"
-          />
+          <img alt="splash" src={champion.splash} className="rounded-full" />
         </div>
 
         <div className="relative p-4 w-96 h-full -ml-20 md:h-auto msl:absolute msl:mt-800 msl:-ml-32">
@@ -57,17 +53,21 @@ export default function ModalResult({
               </h3>
               <p className="text-gray-900">
                 {isWinner ? (
-                  <span className="text-green-600 text-xl">+{plusPoints}</span>
+                  <span className="text-green-600 text-xl">
+                    +{currentPoints}
+                  </span>
                 ) : (
                   <span className="text-red-500 text-xl">-100</span>
                 )}
               </p>
             </div>
+
             <div className="flex justify-center">
               <p className="text-gray-900 text-4xl font-bold">
                 {champion.name}
               </p>
             </div>
+
             <div className="p-6 space-y-6 flex justify-center">
               <p className="text-xl text-gray-500 ml-4">
                 {champion.title &&
@@ -75,6 +75,7 @@ export default function ModalResult({
                   champion?.title.slice(1)}
               </p>
             </div>
+
             <div className="text-center">
               <p className="text-slate-900 text-center ml-6 msl:-m-2 msl:text-xl">
                 Cique{" "}

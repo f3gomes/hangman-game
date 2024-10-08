@@ -13,13 +13,13 @@ import ModalCredits from "./components/ModalCredits";
 import ModalEnterNick from "./components/ModalEnterNick";
 
 import { apiRank } from "./services/api";
-import { useGlobalContext } from "./context/champion";
+import { useGlobalContext } from "./context/global";
 import { calculatePoints } from "./functions/calculatePoints";
 
 function App() {
   const { currentChampion, isLoading, fetchList } = useGlobalContext();
 
-  const [plusPoints, setPlusPoints] = useState(0);
+  const [currentPoints, setCurrentPoints] = useState(0);
   const [wonTheGame, setWonTheGame] = useState(false);
 
   const [championName, setChampionName] = useState("");
@@ -91,7 +91,7 @@ function App() {
         result,
         championName,
         missedLetters,
-        setPlusPoints
+        setCurrentPoints
       ),
     });
   };
@@ -102,7 +102,7 @@ function App() {
     }
 
     if (isLoser) {
-      setPlusPoints(0);
+      setCurrentPoints(0);
       resultGame(false);
     }
   };
@@ -187,7 +187,7 @@ function App() {
         <ModalResult
           isWinner={wonTheGame}
           show={showModalResult}
-          plusPoints={plusPoints}
+          currentPoints={currentPoints}
           closeModal={handleCloseModal}
           championType={currentChampion}
         />

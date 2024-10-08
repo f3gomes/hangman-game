@@ -1,10 +1,11 @@
 import {
-  PropsWithChildren,
   createContext,
+  PropsWithChildren,
   useContext,
   useEffect,
   useState,
 } from "react";
+
 import { handleGetSplash } from "../services/getSplash";
 import { handleGetChampionsList } from "../services/getChampions";
 
@@ -16,7 +17,7 @@ export interface CurrentChampionProps {
 }
 
 interface ContextType {
-  fetchList: any;
+  fetchList: () => void;
   isLoading: boolean;
   setIsLoading: (value: boolean) => void;
   championList: string[];
