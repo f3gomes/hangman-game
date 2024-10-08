@@ -25,6 +25,7 @@ const keys = [
   "x",
   "y",
   "z",
+  " ",
 ];
 
 interface KeyboardProps {
