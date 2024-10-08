@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 
+import cn from "./functions/cn";
 import logo from "./assets/logo.png";
 import Footer from "./components/Footer";
 import Ranking from "./components/Ranking";
+import Loading from "./components/Loading";
 import Keyboard from "./components/Keyboard";
 import ModalHelp from "./components/ModalHelp";
 import ModalResult from "./components/ModalResult";
@@ -15,8 +17,6 @@ import ModalEnterNick from "./components/ModalEnterNick";
 import { apiRank } from "./services/api";
 import { useGlobalContext } from "./context/global";
 import { calculatePoints } from "./functions/calculatePoints";
-import cn from "./functions/cn";
-import Loading from "./components/Loading";
 
 function App() {
   const { currentChampion, isLoading, fetchList } = useGlobalContext();
