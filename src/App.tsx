@@ -24,12 +24,12 @@ function App() {
   const [currentPoints, setCurrentPoints] = useState(0);
   const [wonTheGame, setWonTheGame] = useState(false);
 
-  const [championName, setChampionName] = useState("");
+  const [firstGame, setFirstGame] = useState(false);
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
-  const [firstGame, setFirstGame] = useState(false);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+  const [championName, setChampionName] = useState("");
 
   const [showModalHelp, setShowModalHelp] = useState(
     localStorage.getItem("nick") ? false : true
@@ -61,6 +61,10 @@ function App() {
       .toLocaleLowerCase()
       .split("")
       .every((letter) => guessedLetters.includes(letter));
+
+  const handleSaveNick = (e: React.FormEvent<HTMLInputElement>) => {
+    setNickPlayer(e.currentTarget.value);
+  };
 
   const handleOpenRanking = () => {
     setShowModalRanking(true);
@@ -122,7 +126,7 @@ function App() {
     setOpenModalClass("");
 
     localStorage.setItem("nick", nickPlayer);
-    await apiRank.post("/new", { nick: nickPlayer });
+    await apiRank.post("/ranking/new", { nick: nickPlayer, points: 0 });
   };
 
   const handleClickOutside = (event: any) => {
@@ -198,9 +202,7 @@ function App() {
           show={showModalNick}
           handleStartGame={handleStartFirstGame}
           onDisabled={nickPlayer ? false : true}
-          handleOnChange={(event: React.FormEvent<HTMLInputElement>) =>
-            setNickPlayer(event.currentTarget.value)
-          }
+          handleOnChange={handleSaveNick}
         />
 
         <ModalResult

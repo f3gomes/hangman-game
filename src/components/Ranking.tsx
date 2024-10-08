@@ -18,21 +18,18 @@ export default function Ranking({ show }: RankingProps) {
   );
 
   useEffect(() => {
-    if (show) {
-      handleGetRanking(playerName, setRankingTable, setIsLoading, apiRank);
+    handleGetRanking(playerName, setRankingTable, setIsLoading, apiRank);
 
-      if (!localStorage.getItem("nick")) {
-        let name = String(localStorage.getItem("nick"));
-        setPlayerName(name);
-      }
+    if (localStorage.getItem("nick")) {
+      let name = String(localStorage.getItem("nick"));
+      setPlayerName(name);
     }
   }, [show]);
 
   return (
     <div
-      className={`${
-        show ? "translate-x-0" : "translate-x-full"
-      } fixed right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910 w-[384px] transition-all duration-500`}
+      className={`${show ? "translate-x-0" : "translate-x-full"
+        } fixed right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910 w-[384px] transition-all duration-500`}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">

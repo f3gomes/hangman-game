@@ -38,7 +38,6 @@ export default function ModalResult({
       <div
         tabIndex={-1}
         id="defaultModal"
-        aria-hidden="true"
         className="flex flex-col justify-center items-center"
       >
         <div className="splash w-60 text-901 bg-906 z-50 flex justify-center">

@@ -10,10 +10,12 @@ export const handleGetRanking = async (
 
     setRankingTable(resp.data);
 
-    const filter = resp.data.filter((item: any) => item.nick === playerName)[0];
+    const filter = resp.data.filter(
+      (item: any) => item?.nick === playerName
+    )[0];
 
-    if (filter.points) {
-      localStorage.setItem("points", filter.points);
+    if (filter?.points) {
+      localStorage.setItem("points", filter?.points);
     } else {
       localStorage.setItem("points", "0");
     }
