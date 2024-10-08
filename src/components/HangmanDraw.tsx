@@ -1,3 +1,5 @@
+import cn from "../functions/cn";
+
 const head = () => {
   return (
     <div
@@ -109,6 +111,7 @@ const leftLeg = () => {
 };
 
 interface HangmanDrawProps {
+  show: boolean;
   guesses: number;
 }
 
@@ -121,9 +124,11 @@ const bodyParts = [
   leftLeg(),
 ];
 
-export default function HangmanDraw({ guesses }: HangmanDrawProps) {
+export default function HangmanDraw({ show, guesses }: HangmanDrawProps) {
   return (
-    <div className="relative mt-16 -ml-24 tall:mt-2">
+    <div
+      className={cn("relative mt-16 -ml-24 tall:mt-2", show ? "invisible" : "")}
+    >
       {Array.from(bodyParts).slice(0, guesses)}
       <div className="bg-white absolute h-9 w-2 right-0 rounded-lg"></div>
       <div className="bg-white h-2 w-44 ml-32"></div>

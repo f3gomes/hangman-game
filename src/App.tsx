@@ -15,6 +15,8 @@ import ModalEnterNick from "./components/ModalEnterNick";
 import { apiRank } from "./services/api";
 import { useGlobalContext } from "./context/global";
 import { calculatePoints } from "./functions/calculatePoints";
+import cn from "./functions/cn";
+import Loading from "./components/Loading";
 
 function App() {
   const { currentChampion, isLoading, fetchList } = useGlobalContext();
@@ -26,7 +28,7 @@ function App() {
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
-  const [loadingFirstGame, setLoadingFirstGame] = useState(false);
+  const [firstGame, setFirstGame] = useState(false);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
   const [showModalHelp, setShowModalHelp] = useState(
@@ -116,7 +118,7 @@ function App() {
 
   const handleStartFirstGame = async () => {
     setShowModalNick(false);
-    setLoadingFirstGame(true);
+    setFirstGame(false);
     setOpenModalClass("");
 
     localStorage.setItem("nick", nickPlayer);
@@ -171,9 +173,26 @@ function App() {
   }, [currentChampion]);
 
   return (
-    <div className="min-h-screen">
-      <div className="flex justify-center">
-        <ModalHelp show={showModalHelp} />
+    <div>
+      <div className="header">
+        <img
+          src={logo}
+          alt="logotipo"
+          className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:ml-9 msl:top-3"
+        />
+
+        <button
+          className={`absolute right-5 top-5 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${showModalResult && "hidden"
+            }`}
+          disabled={showModalNick}
+          onClick={handleOpenRanking}
+        >
+          <img src={rankingIcon} alt="ranking icon" />
+        </button>
+      </div>
+
+      <div className="flex">
+        <Ranking show={showModalRanking} key={missedLetters.length} />
 
         <ModalEnterNick
           show={showModalNick}
@@ -191,53 +210,35 @@ function App() {
           closeModal={handleCloseModal}
           championType={currentChampion}
         />
+
+        <ModalHelp show={showModalHelp} />
+        <ModalCredits show={showModalCredits} />
       </div>
 
-      <div
-        className={`w-screen flex flex-col gap-8 my-0 mx-auto items-center first-blur ${openModalClass}`}
-      >
-        <img
-          src={logo}
-          alt="logotipo"
-          className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:ml-9 msl:top-3"
-        />
-
-        <button
-          className={`absolute right-5 top-5 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${showModalResult && "hidden"
-            }`}
-          disabled={showModalNick}
-          onClick={handleOpenRanking}
-        >
-          <img src={rankingIcon} alt="ranking icon" />
-        </button>
-
+      {!showModalResult && !firstGame && !showModalNick && (
         <div
-          className={`${showModalNick || showModalResult ? "invisible" : ""}`}
+          className={cn(
+            openModalClass,
+            "w-screen flex flex-col gap-8 my-0 mx-auto items-center first-blur"
+          )}
         >
-          <HangmanDraw guesses={missedLetters.length} />
-        </div>
-
-        {!showModalResult && (
-          <>
-            <div
-              className={`${showModalNick || showModalResult ? "invisible" : ""
-                }`}
-            >
-              {!loadingFirstGame ? (
-                <HangmanName
-                  reveal={isLoser}
-                  guessedLetters={guessedLetters}
-                  nameToGuess={championName.toLocaleLowerCase()}
-                />
-              ) : (
-                <h3>Carregando...</h3>
-              )}
+          {isLoading ? (
+            <div className="h-screen flex">
+              <Loading />
             </div>
+          ) : (
+            <>
+              <HangmanDraw
+                guesses={missedLetters.length}
+                show={showModalNick || showModalResult}
+              />
 
-            <div
-              className={`flex justify-center ${showModalNick || showModalResult ? "invisible" : ""
-                }`}
-            >
+              <HangmanName
+                reveal={isLoser}
+                guessedLetters={guessedLetters}
+                nameToGuess={championName.toLocaleLowerCase()}
+              />
+
               <Keyboard
                 disabled={isWinner || isLoser}
                 inactiveLetters={missedLetters}
@@ -246,19 +247,16 @@ function App() {
                   championName.toLocaleLowerCase().includes(letter)
                 )}
               />
-            </div>
-          </>
-        )}
+            </>
+          )}
+        </div>
+      )}
 
-        <Ranking show={showModalRanking} key={missedLetters.length} />
-        <ModalCredits show={showModalCredits} />
-
-        <Footer
-          show={showModalResult}
-          handleOpenHelp={handleOpenHelp}
-          handleOpenCredits={handleOpenCredits}
-        />
-      </div>
+      <Footer
+        show={showModalResult}
+        handleOpenHelp={handleOpenHelp}
+        handleOpenCredits={handleOpenCredits}
+      />
     </div>
   );
 }

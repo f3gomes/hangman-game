@@ -1,7 +1,7 @@
 interface HangmanNameProps {
   reveal?: boolean;
-  nameToGuess: string | null;
   guessedLetters: string[];
+  nameToGuess: string | null;
 }
 
 export default function HangmanName({

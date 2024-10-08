@@ -1,3 +1,5 @@
+import cn from "../functions/cn";
+
 interface ModalNickProps {
   show: boolean;
   onDisabled: boolean;
@@ -13,13 +15,12 @@ export default function ModalEnterNick({
 }: ModalNickProps) {
   return (
     <div
-      className={`${
-        show ? "" : "hidden"
-      } bg-902 absolute flex flex-col justify-center items-center bottom-2/4 w-96 h-40 rounded-3xl`}
+      className={cn(
+        show ? "flex" : "hidden",
+        "bg-902 absolute left-1/2 -ml-48 flex-col justify-center items-center bottom-2/4 w-96 h-40 rounded-3xl"
+      )}
     >
-      <p className="text-903 text-2xl font-bold uppercase">
-        Digite seu nick
-      </p>
+      <p className="text-903 text-2xl font-bold uppercase">Digite seu nick</p>
       <input
         type="text"
         className="w-9/12 h-9 rounded-xl text-903 text-center font-bold"
