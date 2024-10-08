@@ -5,45 +5,42 @@ import Footer from "./components/Footer";
 import Ranking from "./components/Ranking";
 import Keyboard from "./components/Keyboard";
 import ModalHelp from "./components/ModalHelp";
-import HangmanDraw from "./components/HangmanDraw";
-import HangmanName from "./components/HangmanName";
 import ModalResult from "./components/ModalResult";
+import HangmanName from "./components/HangmanName";
+import HangmanDraw from "./components/HangmanDraw";
 import rankingIcon from "./assets/ranking_icon.svg";
 import ModalCredits from "./components/ModalCredits";
 import ModalEnterNick from "./components/ModalEnterNick";
 
 import { apiRank } from "./services/api";
-import { champions } from "./data/list";
-import { handleGetTitle } from "./services/getTitle";
-import { handleGetSplash } from "./services/getSplash";
+import { useGlobalContext } from "./context/champion";
 import { calculatePoints } from "./functions/calculatePoints";
 
-const newName = () => {
-  return champions[Math.floor(Math.random() * champions.length)];
-};
-
 function App() {
-  const [championName, setChampionName] = useState(newName());
-  const [plusPoints, setPlusPoints] = useState<number>(0);
-  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
+  const { currentChampion, isLoading, fetchList } = useGlobalContext();
 
-  const [splashImg, setSplashImg] = useState("");
-  const [championTitle, setChampionTitle] = useState("");
+  const [plusPoints, setPlusPoints] = useState(0);
   const [wonTheGame, setWonTheGame] = useState(false);
+
+  const [championName, setChampionName] = useState("");
   const [showModalResult, setShowModalResult] = useState(false);
   const [showModalRanking, setShowModalRanking] = useState(false);
   const [showModalCredits, setShowModalCredits] = useState(false);
   const [loadingFirstGame, setLoadingFirstGame] = useState(false);
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
 
   const [showModalHelp, setShowModalHelp] = useState(
     localStorage.getItem("nick") ? false : true
   );
+
   const [showModalNick, setShowModalNick] = useState(
     localStorage.getItem("nick") ? false : true
   );
+
   const [openModalClass, setOpenModalClass] = useState(
     localStorage.getItem("nick" ? "" : "modal-blur")
   );
+
   const [nickPlayer, setNickPlayer] = useState<any>(
     localStorage.getItem("nick" || "")
   );
@@ -56,10 +53,12 @@ function App() {
 
   const isLoser = missedLetters.length >= 6;
 
-  const isWinnner = championName
-    .toLocaleLowerCase()
-    .split("")
-    .every((letter) => guessedLetters.includes(letter));
+  const isWinner =
+    championName !== "" &&
+    championName
+      .toLocaleLowerCase()
+      .split("")
+      .every((letter) => guessedLetters.includes(letter));
 
   const handleOpenRanking = () => {
     setShowModalRanking(true);
@@ -71,11 +70,10 @@ function App() {
 
   const handleIncludeGuessedLetter = useCallback(
     (key: string) => {
-      if (guessedLetters.includes(key) || isLoser || isWinnner) return;
-
+      if (guessedLetters.includes(key) || isLoser || isWinner) return;
       setGuessedLetters((currentLetters) => [...currentLetters, key]);
     },
-    [guessedLetters, isWinnner, isLoser]
+    [guessedLetters, isWinner, isLoser]
   );
 
   const handleCloseModal = () => {
@@ -99,7 +97,7 @@ function App() {
   };
 
   const handleShowModal = () => {
-    if (isWinnner) {
+    if (isWinner) {
       resultGame(true);
     }
 
@@ -113,16 +111,16 @@ function App() {
     setShowModalResult(false);
     setOpenModalClass("");
     setGuessedLetters([]);
-    setChampionName(newName());
+    fetchList();
   };
 
   const handleStartFirstGame = async () => {
     setShowModalNick(false);
     setLoadingFirstGame(true);
     setOpenModalClass("");
+
     localStorage.setItem("nick", nickPlayer);
     await apiRank.post("/new", { nick: nickPlayer });
-    location.reload();
   };
 
   const handleClickOutside = (event: any) => {
@@ -140,8 +138,7 @@ function App() {
 
   useEffect(() => {
     handleShowModal();
-  }, [isWinnner, isLoser]);
-  ("");
+  }, [isWinner, isLoser]);
 
   useEffect(() => {
     if (localStorage.getItem("nick")) {
@@ -164,9 +161,14 @@ function App() {
   }, []);
 
   useEffect(() => {
-    handleGetTitle(championName, setChampionTitle);
-    handleGetSplash(championName, setSplashImg);
-  }, [championName]);
+    const fetchName = async () => {
+      if (!isLoading && currentChampion.name) {
+        setChampionName(currentChampion.name);
+      }
+    };
+
+    fetchName();
+  }, [currentChampion]);
 
   return (
     <div className="min-h-screen">
@@ -183,18 +185,14 @@ function App() {
         />
 
         <ModalResult
-          splash={splashImg}
           isWinner={wonTheGame}
           show={showModalResult}
           plusPoints={plusPoints}
           closeModal={handleCloseModal}
-          championTitle={championTitle}
-          championName={
-            championName.toLocaleLowerCase().charAt(0).toUpperCase() +
-            championName.slice(1)
-          }
+          championType={currentChampion}
         />
       </div>
+
       <div
         className={`w-screen flex flex-col gap-8 my-0 mx-auto items-center first-blur ${openModalClass}`}
       >
@@ -203,6 +201,7 @@ function App() {
           alt="logotipo"
           className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:ml-9 msl:top-3"
         />
+
         <button
           className={`absolute right-5 top-5 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${showModalResult && "hidden"
             }`}
@@ -217,6 +216,7 @@ function App() {
         >
           <HangmanDraw guesses={missedLetters.length} />
         </div>
+
         {!showModalResult && (
           <>
             <div
@@ -233,17 +233,18 @@ function App() {
                 <h3>Carregando...</h3>
               )}
             </div>
+
             <div
               className={`flex justify-center ${showModalNick || showModalResult ? "invisible" : ""
                 }`}
             >
               <Keyboard
-                disabled={isWinnner || isLoser}
+                disabled={isWinner || isLoser}
+                inactiveLetters={missedLetters}
+                handleIncludeGuessedLetter={handleIncludeGuessedLetter}
                 activeLetters={guessedLetters.filter((letter) =>
                   championName.toLocaleLowerCase().includes(letter)
                 )}
-                inactiveLetters={missedLetters}
-                handleIncludeGuessedLetter={handleIncludeGuessedLetter}
               />
             </div>
           </>
@@ -251,10 +252,11 @@ function App() {
 
         <Ranking show={showModalRanking} key={missedLetters.length} />
         <ModalCredits show={showModalCredits} />
+
         <Footer
           show={showModalResult}
-          handleOpenCredits={handleOpenCredits}
           handleOpenHelp={handleOpenHelp}
+          handleOpenCredits={handleOpenCredits}
         />
       </div>
     </div>

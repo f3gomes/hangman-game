@@ -1,30 +1,16 @@
-export const handleGetSplash = async (
-  championName: string,
-  setSplashImg: (img: string) => void
-) => {
-  let name = championName.charAt(0).toUpperCase() + championName.slice(1);
+import axios from "axios";
 
-  if (name === "Wukong") {
-    name = "MonkeyKing";
-  }
-
-  if (name === "Bardo") {
-    name = "Bard";
-  }
-
-  if (name === "RenataGlasc") {
-    name = "Renata";
-  }
-
+export const handleGetSplash = async (championNameId: string) => {
   try {
-    fetch(`https://gilthedo.sirv.com/Splash/${name}_0.jpg`)
-      .then((res) => {
-        return res.blob();
-      })
-      .then((blob) => {
-        let img = URL.createObjectURL(blob);
-        setSplashImg(img);
-      });
+    const resp = await axios.get(
+      `https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championNameId}_0.jpg`,
+      {
+        responseType: "blob",
+      }
+    );
+
+    const splash = URL.createObjectURL(resp.data);
+    return splash;
   } catch (err) {
     console.log(err);
   }
