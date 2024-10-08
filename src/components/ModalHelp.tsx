@@ -14,7 +14,7 @@ export default function ModalHelp({ show }: ModalHelpProps) {
     <div
       className={cn(
         show ? "flex" : "hidden",
-        "absolute top-2 bg-905 h-914 w-911 left-1/2 -ml-[283.5px] text-center rounded-4xl z-10 flex-col items-center justify-between p-3 tall:h-full msl:w-11/12 msl:h-913 msl:ml-9 msl:rounded-3xl msl:p-2 msl:mr-8 transition-all duration-300"
+        "absolute top-2 bg-905 h-914 w-911 text-center rounded-4xl z-10 flex-col items-center justify-between p-3 tall:h-full msl:w-11/12 msl:h-913 msl:rounded-3xl msl:p-2 transition-all duration-300"
       )}
     >
       <p className="text-lg">

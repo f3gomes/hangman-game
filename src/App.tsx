@@ -178,11 +178,11 @@ function App() {
         <img
           src={logo}
           alt="logotipo"
-          className="absolute left-3 top-2 w-64 msl:w-28 msl:left-auto msl:ml-9 msl:top-3"
+          className="absolute !left-4 !top-4 w-64 msl:w-28 msl:left-auto msl:top-3"
         />
 
         <button
-          className={`absolute right-5 top-5 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${showModalResult && "hidden"
+          className={`absolute right-4 top-4 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${showModalResult && "hidden"
             }`}
           disabled={showModalNick}
           onClick={handleOpenRanking}
@@ -191,7 +191,7 @@ function App() {
         </button>
       </div>
 
-      <div className="flex">
+      <div className="flex justify-center">
         <Ranking show={showModalRanking} key={missedLetters.length} />
 
         <ModalEnterNick

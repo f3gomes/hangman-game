@@ -32,7 +32,7 @@ export default function ModalResult({
     <div
       className={cn(
         show ? "flex" : "hidden",
-        "justify-center items-center w-full h-screen"
+        "justify-center items-center w-full h-svh"
       )}
     >
       <div
@@ -48,7 +48,7 @@ export default function ModalResult({
         <div className="relative p-4 w-96 md:h-auto">
           <div
             className={`relative ${isWinner ? "bg-904" : "bg-red-300"
-              } rounded-3xl shadow msl:w-11/12`}
+              } rounded-3xl shadow`}
           >
             <div className="flex justify-center items-start p-2 rounded-t">
               <h3
