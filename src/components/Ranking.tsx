@@ -6,6 +6,7 @@ import challenger from "../assets/challenger.png";
 import { apiRank } from "../services/api";
 import { useEffect, useState } from "react";
 import { handleGetRanking } from "../services/getRanking";
+import cn from "../functions/cn";
 interface RankingProps {
   show: boolean;
 }
@@ -28,8 +29,10 @@ export default function Ranking({ show }: RankingProps) {
 
   return (
     <div
-      className={`${show ? "translate-x-0" : "translate-x-full"
-        } fixed right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910 w-[384px] transition-all duration-500`}
+      className={cn(
+        show ? "translate-x-0" : "translate-x-full",
+        "fixed right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910 w-[384px] transition-all duration-500"
+      )}
     >
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">
@@ -43,9 +46,9 @@ export default function Ranking({ show }: RankingProps) {
             </div>
             <div className="absolute font-bold text-4xl ml-20 -mt-14">
               <a
+                target={"_blank"}
                 href={`https://www.op.gg/summoners/br/${playerName}`}
                 className="cursor-pointer transition brightness-90 hover:brightness-125"
-                target={"_blank"}
               >
                 {playerName}
               </a>

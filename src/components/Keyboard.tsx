@@ -1,3 +1,5 @@
+import cn from "../functions/cn";
+
 const keys = [
   "a",
   "b",
@@ -49,11 +51,14 @@ export default function Keyboard({
 
         return (
           <button
+            key={key}
             onClick={() => handleIncludeGuessedLetter(key)}
             disabled={isInactive || isActive || disabled}
-            key={key}
-            className={`text-901 transition rounded-xl select-none btn ${isActive ? "active" : ""
-              } ${isInactive ? "inactive" : ""} mxl:w-11 h-11 text-3xl msl:w-12`}
+            className={cn(
+              isActive ? "active" : "",
+              isInactive ? "inactive" : "",
+              "text-901 transition rounded-xl select-none btn mxl:w-11 h-11 text-3xl msl:w-12"
+            )}
           >
             {key}
           </button>

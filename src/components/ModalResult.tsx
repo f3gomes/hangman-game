@@ -40,19 +40,23 @@ export default function ModalResult({
         id="defaultModal"
         className="flex flex-col justify-center items-center"
       >
-        <div className="splash w-60 text-901 bg-906 z-50 flex justify-center">
+        <div className="splash w-60 text-901 bg-906 flex justify-center">
           <img alt="splash" src={champion.splash} className="" />
         </div>
 
         <div className="relative p-4 w-96 md:h-auto">
           <div
-            className={`relative ${isWinner ? "bg-904" : "bg-red-300"
-              } rounded-3xl shadow`}
+            className={cn(
+              isWinner ? "bg-904" : "bg-red-300",
+              "relative rounded-3xl shadow"
+            )}
           >
             <div className="flex justify-center items-start p-2 rounded-t">
               <h3
-                className={`text-xl font-semibold ${isWinner ? "text-902" : "text-907"
-                  } text-white uppercase drop-shadow-lg`}
+                className={cn(
+                  isWinner ? "text-902" : "text-907",
+                  "text-xl font-semibold text-white uppercase drop-shadow-lg"
+                )}
               >
                 Você {isWinner ? "acertou" : "errou"}!
               </h3>

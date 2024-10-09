@@ -186,8 +186,10 @@ function App() {
         />
 
         <button
-          className={`absolute right-4 top-4 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none ${showModalResult && "hidden"
-            }`}
+          className={cn(
+            showModalResult && "disabled",
+            "absolute right-4 top-4 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none"
+          )}
           disabled={showModalNick}
           onClick={handleOpenRanking}
         >
@@ -221,7 +223,7 @@ function App() {
         <div
           className={cn(
             openModalClass,
-            "w-screen flex flex-col gap-8 my-0 mx-auto items-center first-blur"
+            "flex flex-col gap-8 my-0 mx-auto items-center first-blur"
           )}
         >
           {isLoading ? (
