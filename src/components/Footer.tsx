@@ -7,6 +7,7 @@ export default function Footer({
   handleOpenCredits,
   handleOpenHelp,
 }: any) {
+
   return (
     <footer className={cn(show ? "w-full flex justify-center" : "hidden")}>
       <div className="text-slate-300 fixed bottom-1 w-full text-sm text-center msl:text-xs msl:w-9/12 tall:hidden">
@@ -28,8 +29,8 @@ export default function Footer({
         </a>{" "}
         , Inc.
       </div>
+
       <button
-        disabled={show}
         onClick={handleOpenCredits}
         className="fixed bottom-3 right-3 cursor-pointer transition hover:brightness-125 focus:outline-none msl:w-8"
       >
@@ -37,7 +38,6 @@ export default function Footer({
       </button>
 
       <button
-        disabled={show}
         onClick={handleOpenHelp}
         className="fixed bottom-3 right-20 cursor-pointer transition hover:brightness-125 focus:outline-none msl:w-8 msl:left-3"
       >

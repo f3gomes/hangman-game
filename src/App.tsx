@@ -133,8 +133,8 @@ function App() {
 
   const handleClickOutside = (event: any) => {
     if (!refOne?.current?.contains(event.target)) {
-      setShowModalHelp(false);
       setOpenModalClass("");
+      setShowModalHelp(false);
       setShowModalRanking(false);
       setShowModalCredits(false);
     }
@@ -188,12 +188,8 @@ function App() {
         />
 
         <button
-          className={cn(
-            showModalResult && "disabled",
-            "absolute right-4 top-4 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none"
-          )}
-          disabled={showModalNick}
           onClick={handleOpenRanking}
+          className="absolute right-4 top-4 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none"
         >
           <img src={rankingIcon} alt="ranking icon" />
         </button>
@@ -204,9 +200,9 @@ function App() {
 
         <ModalEnterNick
           show={showModalNick}
+          handleOnChange={handleSaveNick}
           handleStartGame={handleStartFirstGame}
           onDisabled={nickPlayer ? false : true}
-          handleOnChange={handleSaveNick}
         />
 
         <ModalResult

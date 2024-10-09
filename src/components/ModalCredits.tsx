@@ -10,7 +10,7 @@ export default function ModalCredits({ show }: ModalCreditsProps) {
     <div
       className={cn(
         show ? "translate-x-0" : "translate-x-full",
-        "bg-902 fixed h-45 bottom-20 right-0 w-[320px] rounded-tl-xl rounded-bl-xl text-901 font-bold text-center flex-col flex justify-center gap-1 transition-all duration-500 msl:bottom-14"
+        "bg-902 fixed h-45 bottom-20 right-0 w-[320px] rounded-tl-xl rounded-bl-xl text-901 font-bold text-center flex-col flex justify-center gap-1 transition-all duration-500 msl:bottom-14 border-l border-t border-b border-black"
       )}
     >
       <h2 className="uppercase text-xl">Criadores</h2>
