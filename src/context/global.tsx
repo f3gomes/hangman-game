@@ -37,10 +37,9 @@ export const GlobalProvider = ({ children }: PropsWithChildren) => {
 
   const fetchList = async () => {
     try {
-      // const newGame = Math.floor(
-      //   Math.random() * import.meta.env.VITE_TOTAL_CHAMPIONS
-      // );
-      const newGame = 10;
+      const newGame = Math.floor(
+        Math.random() * import.meta.env.VITE_TOTAL_CHAMPIONS
+      );
 
       const list = await handleGetChampionsList();
       const splash = await handleGetSplash(list![newGame]?.id);
