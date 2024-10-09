@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
 import { CurrentChampionProps, useGlobalContext } from "../context/global";
+import { useEffect, useState } from "react";
 import cn from "../functions/cn";
 
 interface ModalResultProps {
   show: boolean;
+  audioSrc: string;
   isWinner: boolean;
   currentPoints: number;
   handleClose: () => void;
@@ -11,6 +12,7 @@ interface ModalResultProps {
 
 export default function ModalResult({
   show,
+  audioSrc,
   isWinner,
   handleClose,
   currentPoints,
@@ -18,11 +20,17 @@ export default function ModalResult({
   const { isLoading, currentChampion } = useGlobalContext();
   const [champion, setChampion] = useState<CurrentChampionProps>({});
 
+  let sound = new Audio(audioSrc);
+
   useEffect(() => {
     if (!isLoading && currentChampion) {
       setChampion(currentChampion);
     }
   }, [isLoading]);
+
+  useEffect(() => {
+    sound.play();
+  }, [audioSrc]);
 
   return (
     <div
@@ -40,7 +48,7 @@ export default function ModalResult({
           <img alt="splash" src={champion.splash} className="" />
         </div>
 
-        <div className="relative p-4 w-96 md:h-auto flex flex-col">
+        <div className="relative p-4 w-96 flex flex-col">
           <div
             className={cn(
               isWinner ? "bg-904" : "bg-red-300",
@@ -83,7 +91,7 @@ export default function ModalResult({
             </div>
 
             <div className="text-center">
-              <p className="text-slate-900 text-center msl:-m-2 msl:text-xl">
+              <p className="text-slate-900 text-center msl:text-xl">
                 Cique{" "}
                 <span
                   className="text-blue-600 cursor-pointer"

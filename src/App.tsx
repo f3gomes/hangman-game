@@ -31,6 +31,7 @@ function App() {
   const [showModalCredits, setShowModalCredits] = useState(false);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [championName, setChampionName] = useState("");
+  const [audioSrc, setAudioSrc] = useState("");
 
   const [showModalHelp, setShowModalHelp] = useState(
     localStorage.getItem("nick") ? false : true
@@ -92,6 +93,12 @@ function App() {
     setShowModalResult(true);
     setOpenModalClass("modal-blur");
 
+    if (result) {
+      setAudioSrc("/victory.mp3");
+    } else {
+      setAudioSrc("/defeat.mp3");
+    }
+
     apiRank.post("/ranking/new", {
       nick: nickPlayer,
       points: calculatePoints(
@@ -119,6 +126,7 @@ function App() {
     setShowModalResult(false);
     setOpenModalClass("");
     setGuessedLetters([]);
+    setAudioSrc("");
     fetchList();
   };
 
@@ -206,6 +214,7 @@ function App() {
         />
 
         <ModalResult
+          audioSrc={audioSrc}
           isWinner={wonTheGame}
           show={showModalResult}
           currentPoints={currentPoints}
