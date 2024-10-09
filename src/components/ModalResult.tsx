@@ -40,7 +40,7 @@ export default function ModalResult({
           <img alt="splash" src={champion.splash} className="" />
         </div>
 
-        <div className="relative p-4 w-96 md:h-auto">
+        <div className="relative p-4 w-96 md:h-auto flex flex-col">
           <div
             className={cn(
               isWinner ? "bg-904" : "bg-red-300",
@@ -68,7 +68,7 @@ export default function ModalResult({
               </p>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-center -mb-5">
               <p className="text-gray-900 text-4xl font-bold">
                 {champion.name}
               </p>
