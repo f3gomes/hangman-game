@@ -128,7 +128,7 @@ export default function HangmanDraw({ show, guesses }: HangmanDrawProps) {
   return (
     <div
       className={cn(
-        "relative -z-10 mt-16 -ml-24 tall:mt-2",
+        "relative -z-10 -ml-24",
         show ? "invisible" : ""
       )}
     >
@@ -136,7 +136,7 @@ export default function HangmanDraw({ show, guesses }: HangmanDrawProps) {
       <div className="bg-white absolute h-9 w-2 right-0 rounded-lg"></div>
       <div className="bg-white h-2 w-44 ml-32"></div>
       <div className="bg-white h-2 w-28 ml-28 top-10 rounded-lg absolute -rotate-45"></div>
-      <div className="bg-white h-64 w-2 ml-32"></div>
+      <div className="bg-white h-64 w-2 ml-32 tall:h-52"></div>
       <div className="bg-white h-2 w-20 ml-24 rounded-lg"></div>
     </div>
   );

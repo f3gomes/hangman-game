@@ -65,7 +65,7 @@ module.exports = {
 
         msl: { max: "800px" },
 
-        tall: { raw: "(max-height: 720px)" },
+        tall: { raw: "(max-height: 616px)" },
       },
     },
   },

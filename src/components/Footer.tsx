@@ -4,10 +4,9 @@ import cn from "../functions/cn";
 
 export default function Footer({
   show,
-  handleOpenCredits,
   handleOpenHelp,
+  handleOpenCredits,
 }: any) {
-
   return (
     <footer className={cn(show ? "w-full flex justify-center" : "hidden")}>
       <div className="text-slate-300 fixed bottom-1 w-full text-sm text-center msl:text-xs msl:w-9/12 tall:hidden">

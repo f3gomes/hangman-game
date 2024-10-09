@@ -226,18 +226,13 @@ function App() {
       </div>
 
       {!showModalResult && !firstGame && !showModalNick && (
-        <div
-          className={cn(
-            openModalClass,
-            "flex flex-col gap-8 my-0 mx-auto items-center first-blur"
-          )}
-        >
+        <div className={cn(openModalClass, "first-blur")}>
           {isLoading ? (
-            <div className="h-screen flex">
+            <div className="h-svh flex justify-center">
               <Loading />
             </div>
           ) : (
-            <>
+            <div className="flex flex-col gap-8 my-0 mx-auto items-center justify-center h-svh tall:gap-6">
               <HangmanDraw
                 guesses={missedLetters.length}
                 show={showModalNick || showModalResult}
@@ -257,13 +252,13 @@ function App() {
                   championName.toLocaleLowerCase().includes(letter)
                 )}
               />
-            </>
+            </div>
           )}
         </div>
       )}
 
       <Footer
-        show={showModalResult}
+        show={true}
         handleOpenHelp={handleOpenHelp}
         handleOpenCredits={handleOpenCredits}
       />
