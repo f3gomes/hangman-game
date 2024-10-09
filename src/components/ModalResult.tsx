@@ -6,19 +6,15 @@ interface ModalResultProps {
   show: boolean;
   isWinner: boolean;
   currentPoints: number;
-  closeModal: () => void;
-  championType: CurrentChampionProps;
+  handleClose: () => void;
 }
 
 export default function ModalResult({
   show,
   isWinner,
+  handleClose,
   currentPoints,
 }: ModalResultProps) {
-  const handleReloadPage = () => {
-    location.reload();
-  };
-
   const { isLoading, currentChampion } = useGlobalContext();
   const [champion, setChampion] = useState<CurrentChampionProps>({});
 
@@ -54,8 +50,8 @@ export default function ModalResult({
             <div className="flex justify-center items-start p-2 rounded-t">
               <h3
                 className={cn(
-                  isWinner ? "text-902" : "text-907",
-                  "text-xl font-semibold text-white uppercase drop-shadow-lg"
+                  isWinner ? "text-green-600" : "text-red-500",
+                  "text-xl font-semibold border- uppercase drop-shadow-lg"
                 )}
               >
                 Você {isWinner ? "acertou" : "errou"}!
@@ -79,7 +75,7 @@ export default function ModalResult({
             </div>
 
             <div className="p-6 space-y-6 flex justify-center">
-              <p className="text-xl text-gray-500">
+              <p className="text-xl text-slate-600">
                 {champion.title &&
                   champion.title.charAt(0).toUpperCase() +
                   champion?.title.slice(1)}
@@ -91,7 +87,7 @@ export default function ModalResult({
                 Cique{" "}
                 <span
                   className="text-blue-600 cursor-pointer"
-                  onClick={handleReloadPage}
+                  onClick={handleClose}
                 >
                   AQUI
                 </span>{" "}

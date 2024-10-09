@@ -19,7 +19,8 @@ import { useGlobalContext } from "./context/global";
 import { calculatePoints } from "./functions/calculatePoints";
 
 function App() {
-  const { currentChampion, isLoading, fetchList } = useGlobalContext();
+  const { currentChampion, isLoading, setIsLoading, fetchList } =
+    useGlobalContext();
 
   const [currentPoints, setCurrentPoints] = useState(0);
   const [wonTheGame, setWonTheGame] = useState(false);
@@ -83,7 +84,7 @@ function App() {
   );
 
   const handleCloseModal = () => {
-    setShowModalResult(false);
+    handleNewGame();
   };
 
   const resultGame = (result: boolean) => {
@@ -114,6 +115,7 @@ function App() {
   };
 
   const handleNewGame = () => {
+    setIsLoading(true);
     setShowModalResult(false);
     setOpenModalClass("");
     setGuessedLetters([]);
@@ -211,8 +213,7 @@ function App() {
           isWinner={wonTheGame}
           show={showModalResult}
           currentPoints={currentPoints}
-          closeModal={handleCloseModal}
-          championType={currentChampion}
+          handleClose={handleCloseModal}
         />
 
         <ModalHelp show={showModalHelp} />
