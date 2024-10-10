@@ -29,7 +29,9 @@ export default function ModalResult({
   }, [isLoading]);
 
   useEffect(() => {
-    sound.play();
+    if (audioSrc) {
+      sound.play();
+    }
   }, [audioSrc]);
 
   return (
