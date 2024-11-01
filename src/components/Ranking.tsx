@@ -10,21 +10,12 @@ import cn from "../functions/cn";
 
 interface RankingProps {
   show: boolean;
+  playerName: string;
 }
 
-export default function Ranking({ show }: RankingProps) {
+export default function Ranking({ show, playerName }: RankingProps) {
   const [rankingTable, setRankingTable] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [playerName, setPlayerName] = useState(
-    String(localStorage.getItem("nick"))
-  );
-
-  useEffect(() => {
-    if (localStorage.getItem("nick")) {
-      let name = String(localStorage.getItem("nick"));
-      setPlayerName(name);
-    }
-  }, []);
 
   useEffect(() => {
     if (show) {

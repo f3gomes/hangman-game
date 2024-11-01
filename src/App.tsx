@@ -42,11 +42,11 @@ function App() {
   );
 
   const [openModalClass, setOpenModalClass] = useState(
-    localStorage.getItem("nick" ? "" : "modal-blur")
+    localStorage.getItem("nick") ? "" : "modal-blur"
   );
 
-  const [nickPlayer, setNickPlayer] = useState<any>(
-    localStorage.getItem("nick" || "")
+  const [nickPlayer, setNickPlayer] = useState(
+    localStorage.getItem("nick") || ""
   );
 
   const missedLetters = guessedLetters.filter(
@@ -66,6 +66,7 @@ function App() {
 
   const handleSaveNick = (e: React.FormEvent<HTMLInputElement>) => {
     setNickPlayer(e.currentTarget.value);
+    localStorage.setItem("nick", e.currentTarget.value);
   };
 
   const handleOpenRanking = () => {
@@ -135,7 +136,6 @@ function App() {
     setFirstGame(false);
     setOpenModalClass("");
 
-    localStorage.setItem("nick", nickPlayer);
     await apiRank.post("/ranking/new", { nick: nickPlayer, points: 0 });
   };
 
@@ -196,6 +196,7 @@ function App() {
         />
 
         <button
+          disabled={showModalNick}
           onClick={handleOpenRanking}
           className="absolute right-4 top-4 cursor-pointer brightness-90 transition hover:brightness-125 focus:outline-none"
         >
@@ -204,7 +205,11 @@ function App() {
       </div>
 
       <div className="flex justify-center">
-        <Ranking show={showModalRanking} key={missedLetters.length} />
+        <Ranking
+          show={showModalRanking}
+          playerName={nickPlayer}
+          key={missedLetters.length}
+        />
 
         <ModalEnterNick
           show={showModalNick}
