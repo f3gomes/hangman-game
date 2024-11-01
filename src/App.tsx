@@ -131,7 +131,8 @@ function App() {
     fetchList();
   };
 
-  const handleStartFirstGame = async () => {
+  const handleStartFirstGame = async (e: KeyboardEvent) => {
+    e.preventDefault();
     setShowModalNick(false);
     setFirstGame(false);
     setOpenModalClass("");

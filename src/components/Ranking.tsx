@@ -27,7 +27,7 @@ export default function Ranking({ show, playerName }: RankingProps) {
     <div
       className={cn(
         show ? "translate-x-0" : "translate-x-full",
-        "fixed right-0 mt-20 p-4 h-[33rem] bg-905 rounded-tl-3xl rounded-bl-3xl transition-all duration-500 w-96"
+        "fixed z-10 right-0 mt-20 p-4 h-[33rem] bg-905 rounded-tl-3xl rounded-bl-3xl transition-all duration-500 w-96"
       )}
     >
       {isLoading ? (
