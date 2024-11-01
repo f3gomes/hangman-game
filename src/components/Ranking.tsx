@@ -36,38 +36,40 @@ export default function Ranking({ show }: RankingProps) {
     <div
       className={cn(
         show ? "translate-x-0" : "translate-x-full",
-        "fixed right-0 mt-20 h-911 bg-905 rounded-tl-3xl rounded-bl-3xl msl:h-910 w-[384px] transition-all duration-500"
+        "fixed right-0 mt-20 p-4 h-[33rem] bg-905 rounded-tl-3xl rounded-bl-3xl transition-all duration-500 w-96"
       )}
     >
       {isLoading ? (
-        <div className="w-full h-full flex justify-center items-center">
+        <div className="h-[33rem] flex justify-center items-center">
           <Loading />
         </div>
       ) : (
         <>
-          <div className="ml-6 mt-6">
+          <div className="flex gap-4">
             <div className="bg-906 w-16 h-16 rounded-full flex justify-center items-center text-4xl">
               {playerName.charAt(0).toUpperCase()}
             </div>
 
-            <div className="absolute font-bold text-4xl ml-20 -mt-14">
-              <a
-                target={"_blank"}
-                href={`https://www.op.gg/summoners/br/${playerName}`}
-                className="cursor-pointer transition brightness-90 hover:brightness-125"
-              >
-                {playerName}
-              </a>
+            <div>
+              <div className="font-bold text-4xl">
+                <a
+                  target={"_blank"}
+                  href={`https://www.op.gg/summoners/br/${playerName}`}
+                  className="cursor-pointer transition brightness-90 hover:brightness-125"
+                >
+                  {playerName}
+                </a>
+              </div>
+
+              <span className="font-bold text-lg">
+                {localStorage.getItem("points")}
+              </span>
             </div>
-
-            <span className="absolute font-bold text-lg ml-20 -mt-6">
-              {localStorage.getItem("points")}
-            </span>
-
-            <hr className="w-11/12 mt-3" />
           </div>
 
-          <div className="ml-6 mt-2">
+          <hr className="w-full mt-3" />
+
+          <div className="mt-2">
             {rankingTable.map(
               (item: any, index: number) =>
                 index < 10 && (
