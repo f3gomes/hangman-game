@@ -42,15 +42,7 @@ export default function Ranking({ show, playerName }: RankingProps) {
             </div>
 
             <div>
-              <div className="font-bold text-4xl">
-                <a
-                  target={"_blank"}
-                  href={`https://www.op.gg/summoners/br/${playerName}`}
-                  className="cursor-pointer transition brightness-90 hover:brightness-125"
-                >
-                  {playerName}
-                </a>
-              </div>
+              <div className="font-bold text-4xl">{playerName}</div>
 
               <span className="font-bold text-lg">
                 {localStorage.getItem("points")}
