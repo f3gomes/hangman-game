@@ -21,6 +21,7 @@ export default function ModalResult({
   const [champion, setChampion] = useState<CurrentChampionProps>({});
 
   let sound = new Audio(audioSrc);
+  sound.volume = 0.3;
 
   useEffect(() => {
     if (!isLoading && currentChampion) {
