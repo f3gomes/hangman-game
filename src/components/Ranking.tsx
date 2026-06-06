@@ -5,7 +5,7 @@ import challenger from "../assets/challenger.png";
 
 import { apiRank } from "../services/api";
 import { useEffect, useState } from "react";
-import { handleGetRanking } from "../services/getRanking";
+import { handleGetRanking, RankingItem } from "../services/getRanking";
 import cn from "../functions/cn";
 
 interface RankingProps {
@@ -14,7 +14,7 @@ interface RankingProps {
 }
 
 export default function Ranking({ show, playerName }: RankingProps) {
-  const [rankingTable, setRankingTable] = useState([]);
+  const [rankingTable, setRankingTable] = useState<RankingItem[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function Ranking({ show, playerName }: RankingProps) {
           <hr className="w-full mt-3" />
 
           <div className="mt-2">
-            {rankingTable.length < 0 ? (
+            {rankingTable.length > 0 ? (
               rankingTable?.map(
                 (item: any, index: number) =>
                   index < 10 && (

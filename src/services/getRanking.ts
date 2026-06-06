@@ -1,29 +1,31 @@
+import { AxiosInstance } from "axios";
+
+export interface RankingItem {
+  nick: string;
+  points: number;
+}
+
 export const handleGetRanking = async (
   playerName: string,
-  setRankingTable: any,
-  setIsLoading: any,
-  apiRank: any
-) => {
+  setRankingTable: React.Dispatch<React.SetStateAction<RankingItem[]>>,
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>,
+  apiRank: AxiosInstance,
+): Promise<void> => {
+  setIsLoading(true);
+
   try {
-    setIsLoading(true);
-    const resp = await apiRank.get("/ranking");
+    const { data } = await apiRank.get<RankingItem[]>("/ranking");
 
-    setRankingTable(resp.data);
+    setRankingTable(data);
+    const player = data.find((item) => item.nick === playerName);
 
-    const filter = resp.data.filter(
-      (item: any) => item?.nick === playerName
-    )[0];
+    localStorage.setItem("points", String(player?.points ?? 0));
+  } catch (error) {
+    console.error("Erro ao carregar ranking:", error);
 
-    if (filter?.points) {
-      localStorage.setItem("points", filter?.points);
-    } else {
-      localStorage.setItem("points", "0");
-    }
-  } catch (err) {
-    console.log(err);
+    setRankingTable([]);
+    localStorage.setItem("points", "0");
   } finally {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 500);
+    setIsLoading(false);
   }
 };
