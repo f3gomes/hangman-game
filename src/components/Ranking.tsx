@@ -27,7 +27,7 @@ export default function Ranking({ show, playerName }: RankingProps) {
     <div
       className={cn(
         show ? "translate-x-0" : "translate-x-full",
-        "fixed z-10 right-0 mt-20 p-4 h-[33rem] bg-905 rounded-tl-3xl rounded-bl-3xl transition-all duration-500 w-96"
+        "fixed z-10 right-0 mt-20 p-4 h-[33rem] bg-905 rounded-tl-3xl rounded-bl-3xl transition-all duration-500 w-96",
       )}
     >
       {isLoading ? (
@@ -53,44 +53,50 @@ export default function Ranking({ show, playerName }: RankingProps) {
           <hr className="w-full mt-3" />
 
           <div className="mt-2">
-            {rankingTable.map(
-              (item: any, index: number) =>
-                index < 10 && (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between w-11/12"
-                  >
-                    <div className="flex flex-row">
-                      <div className="flex items-center gap-1">
-                        <div className="w-12">
-                          {index === 0 && (
-                            <img src={challenger} alt="challenger icon" />
-                          )}
+            {rankingTable.length < 0 ? (
+              rankingTable?.map(
+                (item: any, index: number) =>
+                  index < 10 && (
+                    <div
+                      key={index}
+                      className="flex items-center justify-between w-11/12"
+                    >
+                      <div className="flex flex-row">
+                        <div className="flex items-center gap-1">
+                          <div className="w-12">
+                            {index === 0 && (
+                              <img src={challenger} alt="challenger icon" />
+                            )}
 
-                          {index === 1 && (
-                            <img
-                              src={diamond}
-                              alt="challenger icon"
-                              className="w-11"
-                            />
-                          )}
+                            {index === 1 && (
+                              <img
+                                src={diamond}
+                                alt="challenger icon"
+                                className="w-11"
+                              />
+                            )}
 
-                          {index > 1 && (
-                            <img
-                              src={bronze}
-                              alt="challenger icon"
-                              className="w-10"
-                            />
-                          )}
+                            {index > 1 && (
+                              <img
+                                src={bronze}
+                                alt="challenger icon"
+                                className="w-10"
+                              />
+                            )}
+                          </div>
+
+                          <div className="text-2xl font-bold">{item?.nick}</div>
                         </div>
-
-                        <div className="text-2xl font-bold">{item?.nick}</div>
                       </div>
-                    </div>
 
-                    <div className="float-right text-lg">{item?.points}</div>
-                  </div>
-                )
+                      <div className="float-right text-lg">{item?.points}</div>
+                    </div>
+                  ),
+              )
+            ) : (
+              <div className="flex items-center justify-between w-11/12">
+                Sem comunicação com o banco de dados
+              </div>
             )}
           </div>
         </>
